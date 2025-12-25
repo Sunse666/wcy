@@ -1,0 +1,91 @@
+// 主页显示/隐藏动画
+@keyframes offMainHomeAni {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes onMainHomeAni {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Paper页面显示/隐藏动画
+@keyframes offMainPaperAni {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes onMainPaperAni {
+  0% {
+    width: 15px;
+    height: 15px;
+    left: calc(92vw - 26.25px);
+    top: calc(84vh - 26.25px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  }
+  100% {
+    width: @main-width;
+    height: auto;
+    left: @main-left;
+    top: 0;
+    overflow: visible;
+    opacity: 1;
+  }
+}
+
+// 气泡浮动动画
+@keyframes floatBubble {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+// 脉冲点动画
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+// Paper项目Footer动画
+@keyframes mainPaperItemFooterAni {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

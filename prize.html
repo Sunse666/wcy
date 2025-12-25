@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>敬请期待</title>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <link rel="stylesheet" href="./css/coming.css">
+</head>
+<body>
+  <div class="comingPage">
+    <!-- 背景装饰 -->
+    <div class="bgDecor">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="comingContent">
+      <!-- 图标动画 -->
+      <div class="comingIcon">
+        <div class="iconRing"></div>
+        <div class="iconRing"></div>
+        <div class="iconRing"></div>
+        <div class="iconCenter">
+          <ion-icon name="hourglass-outline"></ion-icon>
+        </div>
+      </div>
+
+      <!-- 主标题 - 逐字动画 -->
+      <h1 class="comingTitle" data-text="敬请期待"></h1>
+
+      <!-- 副标题 - 逐字动画 -->
+      <p class="comingSubtitle" data-text="精彩内容正在紧锣密鼓地准备中..."></p>
+
+      <!-- 描述文字 - 逐字动画 -->
+      <div class="comingDesc" data-text="我们正在努力创作更多美好的回忆，请耐心等待，惊喜即将到来！"></div>
+
+      <!-- 进度条 -->
+      <div class="comingProgress">
+        <div class="progressTrack">
+          <div class="progressBar"></div>
+          <div class="progressGlow"></div>
+        </div>
+        <div class="progressText">
+          <span>加载中</span>
+          <span class="progressDots">
+            <i>.</i><i>.</i><i>.</i>
+          </span>
+        </div>
+      </div>
+
+      <!-- 功能预告卡片 -->
+      <div class="comingFeatures">
+        <div class="featureItem" data-delay="0">
+          <div class="featureIcon">
+            <ion-icon name="images-outline"></ion-icon>
+          </div>
+          <div class="featureText" data-text="更多照片"></div>
+        </div>
+        <div class="featureItem" data-delay="1">
+          <div class="featureIcon">
+            <ion-icon name="videocam-outline"></ion-icon>
+          </div>
+          <div class="featureText" data-text="精彩视频"></div>
+        </div>
+        <div class="featureItem" data-delay="2">
+          <div class="featureIcon">
+            <ion-icon name="heart-outline"></ion-icon>
+          </div>
+          <div class="featureText" data-text="温馨故事"></div>
+        </div>
+      </div>
+
+      <!-- 返回按钮 -->
+      <a href="javascript:history.back()" class="comingBack">
+        <ion-icon name="arrow-back"></ion-icon>
+        <span>返回上一页</span>
+      </a>
+    </div>
+
+    <!-- 底部装饰 -->
+    <div class="comingFooter">
+      <div class="footerWave"></div>
+      <div class="footerText">
+        <ion-icon name="sparkles"></ion-icon>
+        <span>Coming Soon</span>
+        <ion-icon name="sparkles"></ion-icon>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============ 逐字动画核心 ============
+    class TextAnimator {
+      constructor(element, options = {}) {
+        this.element = element;
+        this.text = element.dataset.text || element.textContent;
+        this.options = {
+          delay: options.delay || 0,           // 开始延迟
+          charDelay: options.charDelay || 80,  // 每个字符间隔
+          duration: options.duration || 600,   // 动画持续时间
+          easing: options.easing || 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+          direction: options.direction || 'up', // up, down, left, right, scale, rotate
+          ...options
+        };
+        this.init();
+      }
+
+      init() {
+        this.element.innerHTML = '';
+        this.element.style.opacity = '1';
+        
+        // 将文字拆分成单个字符
+        const chars = this.text.split('');
+        
+        chars.forEach((char, index) => {
+          const span = document.createElement('span');
+          span.className = 'text-char';
+          span.textContent = char === ' ' ? '\u00A0' : char; // 处理空格
+          span.style.animationDelay = `${this.options.delay + index * this.options.charDelay}ms`;
+          span.style.animationDuration = `${this.options.duration}ms`;
+          span.style.animationTimingFunction = this.options.easing;
+          
+          // 根据方向添加不同的动画类
+          span.classList.add(`char-${this.options.direction}`);
+          
+          this.element.appendChild(span);
+        });
+      }
+
+      // 重新播放动画
+      replay() {
+        const chars = this.element.querySelectorAll('.text-char');
+        chars.forEach((char, index) => {
+          char.style.animation = 'none';
+          char.offsetHeight; // 触发重绘
+          char.style.animation = '';
+        });
+      }
+    }
+
+    // ============ 页面初始化 ============
+    document.addEventListener('DOMContentLoaded', () => {
+      // 主标题动画 - 从下往上滑入
+      const title = document.querySelector('.comingTitle');
+      new TextAnimator(title, {
+        delay: 300,
+        charDelay: 120,
+        duration: 800,
+        direction: 'up'
+      });
+
+      // 副标题动画 - 从左往右滑入
+      const subtitle = document.querySelector('.comingSubtitle');
+      new TextAnimator(subtitle, {
+        delay: 1000,
+        charDelay: 50,
+        duration: 500,
+        direction: 'left'
+      });
+
+      // 描述文字动画 - 淡入缩放
+      const desc = document.querySelector('.comingDesc');
+      new TextAnimator(desc, {
+        delay: 2500,
+        charDelay: 30,
+        duration: 400,
+        direction: 'scale'
+      });
+
+      // 功能卡片文字动画
+      const featureTexts = document.querySelectorAll('.featureText');
+      featureTexts.forEach((text, index) => {
+        new TextAnimator(text, {
+          delay: 4000 + index * 500,
+          charDelay: 60,
+          duration: 400,
+          direction: 'up'
+        });
+      });
+
+      // 添加交互：鼠标悬停重播动画
+      document.querySelectorAll('.featureItem').forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          const text = item.querySelector('.featureText');
+          const chars = text.querySelectorAll('.text-char');
+          chars.forEach((char, index) => {
+            char.style.animation = 'none';
+            char.offsetHeight;
+            char.style.animationDelay = `${index * 50}ms`;
+            char.classList.remove('char-up');
+            char.classList.add('char-bounce');
+            setTimeout(() => {
+              char.style.animation = '';
+            }, 10);
+          });
+        });
+      });
+    });
+
+    // ============ 进度条动画 ============
+    let progress = 0;
+    const progressBar = document.querySelector('.progressBar');
+    
+    function animateProgress() {
+      progress += Math.random() * 15;
+      if (progress > 100) progress = 100;
+      
+      progressBar.style.width = `${progress}%`;
+      
+      if (progress < 100) {
+        setTimeout(animateProgress, 500 + Math.random() * 1000);
+      } else {
+        // 进度完成后重置
+        setTimeout(() => {
+          progress = 0;
+          progressBar.style.width = '0%';
+          setTimeout(animateProgress, 1000);
+        }, 2000);
+      }
+    }
+    
+    setTimeout(animateProgress, 2000);
+  </script>
+</body>
+</html>

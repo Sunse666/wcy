@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>妈妈</title>
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+  <!-- 加载动画-->
+  <div class="loading" id="loading">
+    <!-- 背景装饰 -->
+    <div class="loadingDecor">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <!-- Logo -->
+    <div class="loadingLogo">
+      <ion-icon name="leaf"></ion-icon>
+    </div>
+    <!-- 旋转圆环 -->
+    <div class="loadingSpinner">
+      <div class="spinnerRing"></div>
+      <div class="spinnerRing"></div>
+      <div class="spinnerRing"></div>
+    </div>
+    <!-- 加载文字 -->
+    <div class="loadingText">
+      Loading
+      <span class="loadingDots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </div>
+    <!-- 进度条 -->
+    <div class="loadingProgress">
+      <div class="progressBar"></div>
+    </div>
+  </div>
+
+  <div class="mainBody">
+    <div class="mainHome">
+      <!-- Hero 欢迎区 -->
+      <div class="mainHomeHero">
+        <div class="heroAvatar">
+          <img src="./png/trdrag.jpg" alt="trdrag">
+        </div>
+        <div class="heroInfo">
+          <h1 class="heroTitle">trdrag</h1>
+          <p class="heroSubtitle"></p>
+        </div>
+        <div class="heroDecor">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <!-- 快捷导航 -->
+      <div class="mainHomeNav">
+        <div class="navItem">
+          <div class="navIcon">
+            <ion-icon name="paper-plane-outline"></ion-icon>
+          </div>
+          <span class="navLabel">文章</span>
+          <span class="navCount">42</span>
+        </div>
+        <div class="navItem">
+          <div class="navIcon">
+            <ion-icon name="pricetags-outline"></ion-icon>
+          </div>
+          <span class="navLabel">标签</span>
+          <span class="navCount">18</span>
+        </div>
+        <div class="navItem">
+          <div class="navIcon">
+            <ion-icon name="folder-open-outline"></ion-icon>
+          </div>
+          <span class="navLabel">归档</span>
+          <span class="navCount">12</span>
+        </div>
+        <div class="navItem">
+          <div class="navIcon">
+            <ion-icon name="bookmarks-outline"></ion-icon>
+          </div>
+          <span class="navLabel">书签</span>
+          <span class="navCount">25</span>
+        </div>
+      </div>
+      <!-- 最近动态 -->
+      <div class="mainHomeRecent">
+        <h2 class="recentTitle">
+          <ion-icon name="time-outline"></ion-icon>
+          最近更新
+        </h2>
+        <div class="recentList">
+          <a class="recentItem" href="talk.html" target="_blank">
+              <span class="recentDot"></span>
+              <span class="recentText">妈妈的话</span>
+              <span class="recentDate">3天前</span>
+          </a>
+          <a class="recentItem" href="life.html" target="_blank">
+              <span class="recentDot"></span>
+              <span class="recentText">妈妈的生活</span>
+              <span class="recentDate">1周前</span>
+          </a>
+          <a class="recentItem" href="prize.html" target="_blank">
+              <span class="recentDot"></span>
+              <span class="recentText">妈妈拿的奖</span>
+              <span class="recentDate">2周前</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mainPaper">
+      <div class="mainPaperList">
+        <div class="mainPaperItem">
+          <div class="mainPaperItemBody">
+            <h3 class="paperTitle">妈妈的话</h3>
+            <p class="paperDesc">妈妈告诉你人生百态</p>
+            <div class="paperMeta">
+              <span class="paperDate">2025-12-23</span>
+              <span class="paperTag">名人名言</span>
+            </div>
+          </div>
+          <div class="mainPaperItemFooter">
+            <a href="talk.html" target="_blank"><ion-icon name="chevron-forward-outline"></ion-icon></a>
+          </div>
+        </div>
+        
+        <div class="mainPaperItem">
+          <div class="mainPaperItemBody">
+            <h3 class="paperTitle">妈妈的生活</h3>
+            <p class="paperDesc">带你见识平时的妈妈是什么样的</p>
+            <div class="paperMeta">
+              <span class="paperDate">2025-12-18</span>
+              <span class="paperTag">JavaScript</span>
+            </div>
+          </div>
+          <div class="mainPaperItemFooter">
+            <a href="life.html" target="_blank"><ion-icon name="chevron-forward-outline"></ion-icon></a>
+          </div>
+        </div>
+        
+        <div class="mainPaperItem">
+          <div class="mainPaperItemBody">
+            <h3 class="paperTitle">妈妈拿的奖</h3>
+            <p class="paperDesc">wcy妈妈太强了</p>
+            <div class="paperMeta">
+              <span class="paperDate">2025-12-10</span>
+              <span class="paperTag">wcy函数</span>
+            </div>
+          </div>
+          <div class="mainPaperItemFooter">
+            <a href="prize.html" target="_blank"><ion-icon name="chevron-forward-outline"></ion-icon></a>
+          </div>
+        </div>
+        
+        <div class="mainPaperItem">
+          <div class="mainPaperItemBody">
+            <h3 class="paperTitle">妈妈讲题</h3>
+            <p class="paperDesc">C++从入门到精通</p>
+            <div class="paperMeta">
+              <span class="paperDate">2025-12-10</span>
+              <span class="paperTag">C++</span>
+            </div>
+          </div>
+          <div class="mainPaperItemFooter">
+            <a href="problem.html" target="_blank"><ion-icon name="chevron-forward-outline"></ion-icon></a>
+          </div>
+        </div>
+        
+        <div class="mainPaperItem">
+          <div class="mainPaperItemBody">
+            <h3 class="paperTitle">妈妈打游戏太厉害了</h3>
+            <p class="paperDesc">妈妈妈妈妈妈</p>
+            <div class="paperMeta">
+              <span class="paperDate">2025-12-10</span>
+              <span class="paperTag">后端开发</span>
+            </div>
+          </div>
+          <div class="mainPaperItemFooter">
+            <a href="game.html" target="_blank"><ion-icon name="chevron-forward-outline"></ion-icon></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mainPricetags"></div>
+    <div class="mainFloder"></div>
+    <div class="mainBookmarks"></div>
+    <div class="mainAbout"></div>
+  </div>
+
+  <div class="float">
+    <div class="floatMenu">
+      <ul class="menu">
+        <li><a class="floatMenuHome"><ion-icon name="home-outline"></ion-icon></a></li>
+        <li><a class="floatMenuPaper"><ion-icon name="paper-plane-outline"></ion-icon></a></li>
+        <li><a class="floatMenuPricetags"><ion-icon name="pricetags-outline"></ion-icon></a></li>
+        <li><a class="floatMenuFloder"><ion-icon name="folder-open-outline"></ion-icon></a></li>
+        <li><a class="floatMenuBookmarks"><ion-icon name="bookmarks-outline"></ion-icon></a></li>
+        <li><a class="floatMenuAbout"><ion-icon name="information-circle-outline"></ion-icon></a></li>
+        <li><a class="floatMenuClose"><ion-icon name="close-outline"></ion-icon></a></li>
+      </ul>
+    </div>
+    <div class="floatCover">
+      <ion-icon name="home-outline" class="floatLinkHome"></ion-icon>
+      <ion-icon name="paper-plane-outline" class="floatLinkPaper"></ion-icon>
+      <ion-icon name="pricetags-outline" class="floatLinkPricetags"></ion-icon>
+      <ion-icon name="folder-open-outline" class="floatLinkFolder"></ion-icon>
+      <ion-icon name="bookmarks-outline" class="floatLinkBookmarks"></ion-icon>
+      <ion-icon name="information-circle-outline" class="floatLinkInformation"></ion-icon>
+    </div>
+  </div>
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="./scripts/loading.js"></script>
+  <script src="./scripts/index.js"></script>
+  <script src="./scripts/paperAnimation.js"></script>
+</body>
+</html>

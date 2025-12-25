@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>妈妈的话</title>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <link rel="stylesheet" href="./css/talk.css">
+</head>
+<body>
+  <div class="momPage">
+    <!-- Hero区域 -->
+    <div class="momHero">
+      <div class="heroIcon">
+        <ion-icon name="heart"></ion-icon>
+      </div>
+      <div class="heroInfo">
+        <h1 class="heroTitle">妈妈的话</h1>
+        <p class="heroSubtitle">记录温暖，珍藏时光</p>
+      </div>
+      <div class="heroDecor">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <!-- 图片展示区域 -->
+    <div class="momGallery">
+      <div class="galleryItem" onclick="openLightbox('./png/two.png', '温馨时刻')">
+        <div class="itemImage">
+          <img src="./png/two.png" alt="温馨时刻">
+        </div>
+        <div class="itemOverlay">
+          <ion-icon name="expand-outline"></ion-icon>
+        </div>
+        <div class="itemLabel">
+          <span class="labelDot"></span>
+          <span class="labelText">温馨时刻</span>
+        </div>
+      </div>
+
+      <div class="galleryItem" onclick="openLightbox('./png/wxr.png', '幸福瞬间')">
+        <div class="itemImage">
+          <img src="./png/wxr.png" alt="幸福瞬间">
+        </div>
+        <div class="itemOverlay">
+          <ion-icon name="expand-outline"></ion-icon>
+        </div>
+        <div class="itemLabel">
+          <span class="labelDot"></span>
+          <span class="labelText">幸福瞬间</span>
+        </div>
+      </div>
+
+      <div class="galleryItem" onclick="openLightbox('./png/eat.png', '美味时光')">
+        <div class="itemImage">
+          <img src="./png/eat.png" alt="美味时光">
+        </div>
+        <div class="itemOverlay">
+          <ion-icon name="expand-outline"></ion-icon>
+        </div>
+        <div class="itemLabel">
+          <span class="labelDot"></span>
+          <span class="labelText">美味时光</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部装饰 -->
+    <div class="momFooter">
+      <ion-icon name="leaf"></ion-icon>
+      <span>用心记录每一刻</span>
+      <ion-icon name="leaf"></ion-icon>
+    </div>
+  </div>
+
+  <!-- 图片灯箱/放大查看 -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightboxContent">
+      <!-- 关闭按钮 -->
+      <button class="lightboxClose" onclick="closeLightbox(event)">
+        <ion-icon name="close"></ion-icon>
+      </button>
+      
+      <!-- 图片容器 -->
+      <div class="lightboxImageWrap">
+        <img src="" alt="" id="lightboxImage">
+      </div>
+      
+      <!-- 图片标题 -->
+      <div class="lightboxCaption" id="lightboxCaption"></div>
+      
+      <!-- 左右切换按钮 -->
+      <button class="lightboxNav lightboxPrev" onclick="changeImage(-1, event)">
+        <ion-icon name="chevron-back"></ion-icon>
+      </button>
+      <button class="lightboxNav lightboxNext" onclick="changeImage(1, event)">
+        <ion-icon name="chevron-forward"></ion-icon>
+      </button>
+      
+      <!-- 缩放控制 -->
+      <div class="lightboxControls">
+        <button onclick="zoomImage(-0.2, event)">
+          <ion-icon name="remove"></ion-icon>
+        </button>
+        <span id="zoomLevel">100%</span>
+        <button onclick="zoomImage(0.2, event)">
+          <ion-icon name="add"></ion-icon>
+        </button>
+        <button onclick="resetZoom(event)">
+          <ion-icon name="refresh"></ion-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 图片数据
+    const images = [
+      { src: './png/two.png', caption: '温馨时刻' },
+      { src: './png/wxr.png', caption: '幸福瞬间' },
+      { src: './png/eat.png', caption: '美味时光' }
+    ];
+    
+    let currentIndex = 0;
+    let currentZoom = 1;
+
+    // 打开灯箱
+    function openLightbox(src, caption) {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightboxImage');
+      const cap = document.getElementById('lightboxCaption');
+      
+      // 找到当前图片索引
+      currentIndex = images.findIndex(item => item.src === src);
+      
+      img.src = src;
+      cap.textContent = caption;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+      // 重置缩放
+      currentZoom = 1;
+      img.style.transform = `scale(${currentZoom})`;
+      document.getElementById('zoomLevel').textContent = '100%';
+    }
+
+    // 关闭灯箱
+    function closeLightbox(event) {
+      // 只有点击背景或关闭按钮时才关闭
+      if (event.target.id === 'lightbox' || 
+          event.target.closest('.lightboxClose')) {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // 切换图片
+    function changeImage(direction, event) {
+      event.stopPropagation();
+      
+      currentIndex += direction;
+      
+      // 循环
+      if (currentIndex < 0) currentIndex = images.length - 1;
+      if (currentIndex >= images.length) currentIndex = 0;
+      
+      const img = document.getElementById('lightboxImage');
+      const cap = document.getElementById('lightboxCaption');
+      
+      // 添加切换动画
+      img.style.opacity = '0';
+      img.style.transform = `scale(0.8)`;
+      
+      setTimeout(() => {
+        img.src = images[currentIndex].src;
+        cap.textContent = images[currentIndex].caption;
+        currentZoom = 1;
+        img.style.opacity = '1';
+        img.style.transform = `scale(${currentZoom})`;
+        document.getElementById('zoomLevel').textContent = '100%';
+      }, 200);
+    }
+
+    // 缩放图片
+    function zoomImage(delta, event) {
+      event.stopPropagation();
+      
+      currentZoom += delta;
+      currentZoom = Math.max(0.5, Math.min(3, currentZoom)); // 限制 0.5x - 3x
+      
+      const img = document.getElementById('lightboxImage');
+      img.style.transform = `scale(${currentZoom})`;
+      document.getElementById('zoomLevel').textContent = Math.round(currentZoom * 100) + '%';
+    }
+
+    // 重置缩放
+    function resetZoom(event) {
+      event.stopPropagation();
+      
+      currentZoom = 1;
+      const img = document.getElementById('lightboxImage');
+      img.style.transform = `scale(${currentZoom})`;
+      document.getElementById('zoomLevel').textContent = '100%';
+    }
+
+    // 键盘事件
+    document.addEventListener('keydown', (e) => {
+      const lightbox = document.getElementById('lightbox');
+      if (!lightbox.classList.contains('active')) return;
+      
+      switch(e.key) {
+        case 'Escape':
+          lightbox.classList.remove('active');
+          document.body.style.overflow = '';
+          break;
+        case 'ArrowLeft':
+          changeImage(-1, e);
+          break;
+        case 'ArrowRight':
+          changeImage(1, e);
+          break;
+        case '+':
+        case '=':
+          zoomImage(0.2, e);
+          break;
+        case '-':
+          zoomImage(-0.2, e);
+          break;
+      }
+    });
+  </script>
+</body>
+</html>

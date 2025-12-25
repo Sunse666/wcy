@@ -1,0 +1,274 @@
+.mainHome {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: absolute;
+  width: @main-width;
+  min-height: 100vh;
+  left: @main-left;
+  top: 0;
+  padding: 20px 0;
+  animation: offMainHomeAni 1.5s ease-out 1 both;
+  z-index: -10;
+
+  // Hero区域
+  .mainHomeHero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 280px;
+    border-radius: @border-radius-large;
+    background: linear-gradient(135deg, @color-gradient-start 0%, @color-gradient-mid 50%, @color-gradient-end 100%);
+    box-shadow: @shadow-primary;
+    overflow: hidden;
+
+    .heroAvatar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: @color-bg;
+      box-shadow: @shadow-medium;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .heroInfo {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .heroTitle {
+      font-size: 2.2em;
+      font-weight: 700;
+      color: @color-text-dark;
+      letter-spacing: 2px;
+    }
+
+    .heroSubtitle {
+      font-size: 1em;
+      color: @color-text-medium;
+      margin-top: 8px;
+      opacity: 0.9;
+    }
+
+    .heroDecor {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+
+      span {
+        position: absolute;
+        border-radius: 50%;
+        background: @color-white-transparent;
+        animation: floatBubble 3s ease-in-out infinite;
+      }
+
+      span:nth-child(1) {
+        width: 60px;
+        height: 60px;
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      span:nth-child(2) {
+        width: 40px;
+        height: 40px;
+        top: 60%;
+        right: 15%;
+        animation-delay: 1s;
+      }
+
+      span:nth-child(3) {
+        width: 25px;
+        height: 25px;
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 2s;
+      }
+    }
+  }
+
+  // 导航区域
+  .mainHomeNav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  // 默认：一行四列
+    gap: 15px;
+    width: 100%;
+
+    // 中等屏幕：两行两列
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    // 小屏幕：四行一列
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+
+    .navItem {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 25px 15px;
+      border-radius: @border-radius-medium;
+      background: @color-primary-light;
+      box-shadow: @shadow-light;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      // 小屏幕时改为横向布局更美观
+      @media (max-width: 480px) {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 20px;
+        gap: 15px;
+      }
+
+      .navIcon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: @color-primary;
+        box-shadow: 0px 3px 10px rgba(95, 248, 100, 0.5);
+
+        // 小屏幕时图标稍小
+        @media (max-width: 480px) {
+          width: 45px;
+          height: 45px;
+        }
+
+        ion-icon {
+          font-size: 1.5em;
+          color: @color-text-dark;
+        }
+      }
+
+      .navLabel {
+        margin-top: 12px;
+        font-size: 0.95em;
+        font-weight: 600;
+        color: @color-text-dark;
+
+        // 小屏幕时取消上边距
+        @media (max-width: 480px) {
+          margin-top: 0;
+          flex: 1;
+        }
+      }
+
+      .navCount {
+        margin-top: 5px;
+        font-size: 0.8em;
+        color: @color-text-light;
+        opacity: 0.8;
+
+        // 小屏幕时样式调整
+        @media (max-width: 480px) {
+          margin-top: 0;
+          padding: 4px 12px;
+          border-radius: 12px;
+          background: @color-primary;
+        }
+      }
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 10px 25px rgba(95, 248, 100, 0.5);
+
+        // 小屏幕时改为横向移动
+        @media (max-width: 480px) {
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+
+  // 最近活动区域
+  .mainHomeRecent {
+    padding: 25px;
+    width: 100%;
+    border-radius: @border-radius-medium;
+    background: @color-primary-light;
+    box-shadow: @shadow-light;
+
+    .recentTitle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.2em;
+      font-weight: 600;
+      color: @color-text-dark;
+      margin-bottom: 20px;
+
+      ion-icon {
+        font-size: 1.2em;
+      }
+    }
+
+    .recentList {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .recentItem {
+        display: flex;
+        align-items: center;
+        padding: 15px 20px;
+        border-radius: @border-radius-small;
+        background: @color-bg;
+        text-decoration: none;
+        transition: all 0.3s ease;
+
+        .recentDot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: @color-primary;
+          box-shadow: 0 0 8px rgba(95, 248, 100, 0.8);
+          animation: pulseDot 1.5s ease-in-out infinite;
+        }
+
+        .recentText {
+          flex: 1;
+          margin-left: 15px;
+          font-size: 0.95em;
+          color: @color-text-medium;
+        }
+
+        .recentDate {
+          font-size: 0.8em;
+          color: @color-text-light;
+          opacity: 0.7;
+        }
+
+        &:hover {
+          background: #c5f5c9;
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+
+  // 激活状态
+  &.onMainHome {
+    animation: onMainHomeAni 0.5s ease-out 1 both;
+    z-index: 10;
+  }
+}

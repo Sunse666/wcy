@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>妈妈的生活</title>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <link rel="stylesheet" href="./css/life.css">
+</head>
+<body>
+  <div class="lifePage">
+    <!-- Hero区域 -->
+    <div class="lifeHero">
+      <div class="heroIcon">
+        <ion-icon name="sunny"></ion-icon>
+      </div>
+      <div class="heroInfo">
+        <h1 class="heroTitle">妈妈的生活</h1>
+        <p class="heroSubtitle">平凡日子里的小确幸</p>
+      </div>
+      <div class="heroDecor">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <!-- 生活标签导航 -->
+    <div class="lifeTags">
+      <div class="tagItem active" data-filter="all">
+        <ion-icon name="apps"></ion-icon>
+        <span>全部</span>
+      </div>
+      <div class="tagItem" data-filter="family">
+        <ion-icon name="people"></ion-icon>
+        <span>家人</span>
+      </div>
+      <div class="tagItem" data-filter="food">
+        <ion-icon name="restaurant"></ion-icon>
+        <span>美食</span>
+      </div>
+      <div class="tagItem" data-filter="daily">
+        <ion-icon name="calendar"></ion-icon>
+        <span>日常</span>
+      </div>
+    </div>
+
+    <!-- 图片瀑布流展示区域 -->
+    <div class="lifeGallery">
+      <!-- 主打大图 -->
+      <div class="galleryItem featured" data-category="family" onclick="openLightbox(0)">
+        <div class="itemImage">
+          <img src="./png/mother.png" alt="妈妈">
+        </div>
+        <div class="itemOverlay">
+          <ion-icon name="expand-outline"></ion-icon>
+        </div>
+        <div class="itemLabel">
+          <div class="labelBadge">
+            <ion-icon name="heart"></ion-icon>
+          </div>
+          <div class="labelContent">
+            <span class="labelText">最爱的妈妈</span>
+            <span class="labelSub">永远的港湾</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 普通图片 -->
+      <div class="galleryItem" data-category="family" onclick="openLightbox(1)">
+        <div class="itemImage">
+          <img src="./png/hxy.png" alt="幸福时光">
+        </div>
+        <div class="itemOverlay">
+          <ion-icon name="expand-outline"></ion-icon>
+        </div>
+        <div class="itemLabel">
+          <div class="labelBadge">
+            <ion-icon name="happy"></ion-icon>
+          </div>
+          <div class="labelContent">
+            <span class="labelText">幸福时光</span>
+            <span class="labelSub">开心每一天</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="galleryItem" data-category="family" onclick="openLightbox(2)">
+        <div class="itemImage">
+          <img src="./png/lsf.png" alt="温馨瞬间">
+        </div>
+        <div class="itemOverlay">
+          <ion-icon name="expand-outline"></ion-icon>
+        </div>
+        <div class="itemLabel">
+          <div class="labelBadge">
+            <ion-icon name="camera"></ion-icon>
+          </div>
+          <div class="labelContent">
+            <span class="labelText">温馨瞬间</span>
+            <span class="labelSub">值得珍藏</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="galleryItem" data-category="food" onclick="openLightbox(3)">
+        <div class="itemImage">
+          <img src="./png/lunch.png" alt="美味午餐">
+        </div>
+        <div class="itemOverlay">
+          <ion-icon name="expand-outline"></ion-icon>
+        </div>
+        <div class="itemLabel">
+          <div class="labelBadge">
+            <ion-icon name="restaurant"></ion-icon>
+          </div>
+          <div class="labelContent">
+            <span class="labelText">美味午餐</span>
+            <span class="labelSub">妈妈的味道</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="galleryItem" data-category="daily" onclick="openLightbox(4)">
+        <div class="itemImage">
+          <img src="./png/sleep.png" alt="休息时光">
+        </div>
+        <div class="itemOverlay">
+          <ion-icon name="expand-outline"></ion-icon>
+        </div>
+        <div class="itemLabel">
+          <div class="labelBadge">
+            <ion-icon name="moon"></ion-icon>
+          </div>
+          <div class="labelContent">
+            <span class="labelText">休息时光</span>
+            <span class="labelSub">安静美好</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 统计信息 -->
+    <div class="lifeStats">
+      <div class="statItem">
+        <div class="statNumber">5</div>
+        <div class="statLabel">珍贵照片</div>
+      </div>
+      <div class="statDivider"></div>
+      <div class="statItem">
+        <div class="statNumber">∞</div>
+        <div class="statLabel">满满的爱</div>
+      </div>
+      <div class="statDivider"></div>
+      <div class="statItem">
+        <div class="statNumber">365</div>
+        <div class="statLabel">幸福日子</div>
+      </div>
+    </div>
+
+    <!-- 底部装饰 -->
+    <div class="lifeFooter">
+      <ion-icon name="flower"></ion-icon>
+      <span>记录生活，感恩陪伴</span>
+      <ion-icon name="flower"></ion-icon>
+    </div>
+  </div>
+
+  <!-- 图片灯箱 -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightboxContent">
+      <button class="lightboxClose" onclick="closeLightbox(event)">
+        <ion-icon name="close"></ion-icon>
+      </button>
+      
+      <div class="lightboxImageWrap">
+        <img src="" alt="" id="lightboxImage">
+      </div>
+      
+      <div class="lightboxCaption">
+        <div class="captionTitle" id="lightboxTitle"></div>
+        <div class="captionSub" id="lightboxSub"></div>
+      </div>
+      
+      <button class="lightboxNav lightboxPrev" onclick="changeImage(-1, event)">
+        <ion-icon name="chevron-back"></ion-icon>
+      </button>
+      <button class="lightboxNav lightboxNext" onclick="changeImage(1, event)">
+        <ion-icon name="chevron-forward"></ion-icon>
+      </button>
+      
+      <div class="lightboxControls">
+        <button onclick="zoomImage(-0.2, event)" title="缩小">
+          <ion-icon name="remove"></ion-icon>
+        </button>
+        <span id="zoomLevel">100%</span>
+        <button onclick="zoomImage(0.2, event)" title="放大">
+          <ion-icon name="add"></ion-icon>
+        </button>
+        <button onclick="resetZoom(event)" title="重置">
+          <ion-icon name="refresh"></ion-icon>
+        </button>
+        <div class="controlsDivider"></div>
+        <span class="imageCounter" id="imageCounter">1 / 5</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 图片数据
+    const images = [
+      { src: './png/mother.png', title: '最爱的妈妈', sub: '永远的港湾' },
+      { src: './png/hxy.png', title: '幸福时光', sub: '开心每一天' },
+      { src: './png/lsf.png', title: '温馨瞬间', sub: '值得珍藏' },
+      { src: './png/lunch.png', title: '美味午餐', sub: '妈妈的味道' },
+      { src: './png/sleep.png', title: '休息时光', sub: '安静美好' }
+    ];
+    
+    let currentIndex = 0;
+    let currentZoom = 1;
+
+    // 打开灯箱
+    function openLightbox(index) {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightboxImage');
+      const title = document.getElementById('lightboxTitle');
+      const sub = document.getElementById('lightboxSub');
+      const counter = document.getElementById('imageCounter');
+      
+      currentIndex = index;
+      
+      img.src = images[index].src;
+      title.textContent = images[index].title;
+      sub.textContent = images[index].sub;
+      counter.textContent = `${index + 1} / ${images.length}`;
+      
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+      currentZoom = 1;
+      img.style.transform = `scale(${currentZoom})`;
+      document.getElementById('zoomLevel').textContent = '100%';
+    }
+
+    // 关闭灯箱
+    function closeLightbox(event) {
+      if (event.target.id === 'lightbox' || event.target.closest('.lightboxClose')) {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // 切换图片
+    function changeImage(direction, event) {
+      event.stopPropagation();
+      
+      currentIndex += direction;
+      if (currentIndex < 0) currentIndex = images.length - 1;
+      if (currentIndex >= images.length) currentIndex = 0;
+      
+      const img = document.getElementById('lightboxImage');
+      const title = document.getElementById('lightboxTitle');
+      const sub = document.getElementById('lightboxSub');
+      const counter = document.getElementById('imageCounter');
+      
+      img.style.opacity = '0';
+      img.style.transform = 'scale(0.8)';
+      
+      setTimeout(() => {
+        img.src = images[currentIndex].src;
+        title.textContent = images[currentIndex].title;
+        sub.textContent = images[currentIndex].sub;
+        counter.textContent = `${currentIndex + 1} / ${images.length}`;
+        currentZoom = 1;
+        img.style.opacity = '1';
+        img.style.transform = `scale(${currentZoom})`;
+        document.getElementById('zoomLevel').textContent = '100%';
+      }, 200);
+    }
+
+    // 缩放图片
+    function zoomImage(delta, event) {
+      event.stopPropagation();
+      currentZoom += delta;
+      currentZoom = Math.max(0.5, Math.min(3, currentZoom));
+      
+      const img = document.getElementById('lightboxImage');
+      img.style.transform = `scale(${currentZoom})`;
+      document.getElementById('zoomLevel').textContent = Math.round(currentZoom * 100) + '%';
+    }
+
+    // 重置缩放
+    function resetZoom(event) {
+      event.stopPropagation();
+      currentZoom = 1;
+      const img = document.getElementById('lightboxImage');
+      img.style.transform = `scale(${currentZoom})`;
+      document.getElementById('zoomLevel').textContent = '100%';
+    }
+
+    // 标签筛选功能
+    document.querySelectorAll('.tagItem').forEach(tag => {
+      tag.addEventListener('click', function() {
+        // 切换active状态
+        document.querySelectorAll('.tagItem').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        const filter = this.dataset.filter;
+        const items = document.querySelectorAll('.galleryItem');
+        
+        items.forEach((item, index) => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = '';
+            item.style.animation = `scaleIn 0.4s ease-out ${index * 0.1}s both`;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 键盘事件
+    document.addEventListener('keydown', (e) => {
+      const lightbox = document.getElementById('lightbox');
+      if (!lightbox.classList.contains('active')) return;
+      
+      switch(e.key) {
+        case 'Escape':
+          lightbox.classList.remove('active');
+          document.body.style.overflow = '';
+          break;
+        case 'ArrowLeft':
+          changeImage(-1, e);
+          break;
+        case 'ArrowRight':
+          changeImage(1, e);
+          break;
+        case '+':
+        case '=':
+          zoomImage(0.2, e);
+          break;
+        case '-':
+          zoomImage(-0.2, e);
+          break;
+      }
+    });
+  </script>
+</body>
+</html>
