@@ -1,19 +1,3 @@
-// ==================== mainHomeNav ====================
-let mainHomeNavItem1 = document.querySelector('.navItem:nth-child(1)');
-mainHomeNavItem1.onclick = function() {
-  clearFloatMenuClasses();
-  clearMainBodyClasses();
-  float.classList.add('onMenu');
-  float.classList.remove('active');
-  floatCover.classList.toggle('menuPaper');
-  mainPaper.classList.add('onMainPaper');
-  
-  // 触发 Paper 入场动画
-  setTimeout(() => {
-    paperAnimation.animateEnter();
-  }, 200);
-}
-
 // ==================== 导航控制 ====================
 let float = document.querySelector('.float');
 let floatCover = document.querySelector('.floatCover');
@@ -26,6 +10,7 @@ let floatMenuPaper = document.querySelector('.floatMenuPaper');
 let floatMenuPricetags = document.querySelector('.floatMenuPricetags');
 let floatMenuFloder = document.querySelector('.floatMenuFloder');
 let floatMenuBookmarks = document.querySelector('.floatMenuBookmarks');
+let floatMenuPalette = document.querySelector('.floatMenuPalette');
 let floatMenuAbout = document.querySelector('.floatMenuAbout');
 let floatMenuClose = document.querySelector('.floatMenuClose');
 
@@ -34,10 +19,11 @@ let mainPaper = document.querySelector('.mainPaper');
 let mainPricetags = document.querySelector('.mainPricetags');
 let mainFloder = document.querySelector('.mainFloder');
 let mainBookmarks = document.querySelector('.mainBookmarks');
+let mainPalette = document.querySelector('.mainPalette');
 let mainAbout = document.querySelector('.mainAbout');
 
 function clearFloatMenuClasses() {
-  floatCover.classList.remove('menuHome', 'menuPaper', 'menuPricetags', 'menuFloder', 'menuBookmarks', 'menuAbout');
+  floatCover.classList.remove('menuHome', 'menuPaper', 'menuPricetags', 'menuFloder', 'menuBookmarks', 'menuPalette', 'menuAbout');
 }
 
 function clearMainBodyClasses() {
@@ -46,6 +32,7 @@ function clearMainBodyClasses() {
   mainPricetags.classList.remove('onMainPricetags');
   mainFloder.classList.remove('onMainFloder');
   mainBookmarks.classList.remove('onMainBookmarks');
+  mainPalette.classList.remove('onMainPalette');
   mainAbout.classList.remove('onMainAbout');
 }
 
@@ -99,6 +86,15 @@ floatMenuBookmarks.onclick = function() {
   mainBookmarks.classList.add('onMainBookmarks');
 }
 
+floatMenuPalette.onclick = function() {
+  clearFloatMenuClasses();
+  clearMainBodyClasses();
+  float.classList.add('onMenu');
+  float.classList.remove('active');
+  floatCover.classList.toggle('menuPalette');
+  mainPalette.classList.add('onMainPalette');
+}
+
 floatMenuAbout.onclick = function() {
   clearFloatMenuClasses();
   clearMainBodyClasses();
@@ -115,15 +111,12 @@ floatMenuClose.onclick = function() {
   float.classList.remove('active');
 }
 
-
 // ==================== Paper 动画模块 ====================
 const paperAnimation = {
   isInitialized: false,
   currentTimeline: null,
 
-  /**
-   * 初始化 - 将文字拆分为单个字符span
-   */
+  // 将文字拆分为单个字符span
   init: function() {
     if (this.isInitialized) return;
 
