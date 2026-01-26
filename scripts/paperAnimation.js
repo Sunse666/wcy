@@ -1,12 +1,8 @@
-// ==================== Paper 动画模块 ====================
 const paperAnimation = {
   isInitialized: false,
   currentTimeline: null,
-  explodingItems: new Set(), // 追踪正在炸裂的item
+  explodingItems: new Set(),
 
-  /**
-   * 初始化 - 将文字拆分为单个字符span
-   */
   init: function() {
     if (this.isInitialized) return;
 
@@ -37,9 +33,6 @@ const paperAnimation = {
     this.isInitialized = true;
   },
 
-  /**
-   * 拆分文字为单个字符
-   */
   splitText: function(element, className) {
     if (!element) return;
 
@@ -60,9 +53,6 @@ const paperAnimation = {
     }
   },
 
-  /**
-   * 入场动画
-   */
   animateEnter: function() {
     if (!this.isInitialized) {
       this.init();
@@ -77,10 +67,8 @@ const paperAnimation = {
       this.currentTimeline.pause();
     }
 
-    // 重置所有状态
     this.resetAll();
 
-    // 重新隐藏所有字符准备入场
     const allChars = document.querySelectorAll('.mainPaperItem .text-char');
     allChars.forEach(char => {
       char.style.opacity = '0';
@@ -152,23 +140,18 @@ const paperAnimation = {
     return this.currentTimeline;
   },
 
-  /**
-   * 炸裂动画 - 修复版
-   */
   animateExplode: function(item, callback) {
     if (typeof anime === 'undefined') {
       if (callback) callback();
       return;
     }
 
-    // 防止重复点击
     const itemIndex = item.getAttribute('data-index');
     if (this.explodingItems.has(itemIndex)) {
       return;
     }
     this.explodingItems.add(itemIndex);
 
-    // 添加炸裂状态类
     item.classList.add('exploding');
 
     const allChars = item.querySelectorAll('.text-char');
@@ -177,7 +160,6 @@ const paperAnimation = {
     const explodeTimeline = anime.timeline({
       easing: 'easeOutExpo',
       complete: () => {
-        // 动画完成后重置
         this.explodingItems.delete(itemIndex);
         item.classList.remove('exploding');
         
@@ -185,7 +167,6 @@ const paperAnimation = {
       }
     });
 
-    // 聚拢效果
     explodeTimeline.add({
       targets: allChars,
       scale: [1, 1.2],
@@ -193,10 +174,9 @@ const paperAnimation = {
       easing: 'easeInQuad'
     });
 
-    // 炸裂 - 限制范围防止溢出
     explodeTimeline.add({
       targets: allChars,
-      translateX: () => anime.random(-300, 300),  // 缩小范围
+      translateX: () => anime.random(-300, 300),
       translateY: () => anime.random(-200, 200),
       rotateZ: () => anime.random(-360, 360),
       scale: [1.2, 0],
@@ -222,13 +202,9 @@ const paperAnimation = {
     return explodeTimeline;
   },
 
-  /**
-   * 波浪动画
-   */
   animateWave: function(item) {
     if (typeof anime === 'undefined') return;
     
-    // 如果正在炸裂，不执行波浪
     const itemIndex = item.getAttribute('data-index');
     if (this.explodingItems.has(itemIndex)) return;
 
@@ -247,9 +223,6 @@ const paperAnimation = {
     }
   },
 
-  /**
-   * 绑定点击事件
-   */
   bindClickEvents: function() {
     const self = this;
     const footerLinks = document.querySelectorAll('.mainPaperItemFooter a');
@@ -262,9 +235,7 @@ const paperAnimation = {
         const item = this.closest('.mainPaperItem');
         const href = this.getAttribute('href');
 
-        // 触发炸裂动画
         self.animateExplode(item, () => {
-          // 延迟重置，确保动画完全结束
           setTimeout(() => {
             self.resetItem(item);
           }, 100);
@@ -272,7 +243,6 @@ const paperAnimation = {
       });
     });
 
-    // 鼠标悬停效果
     const paperItems = document.querySelectorAll('.mainPaperItem');
     paperItems.forEach(item => {
       item.addEventListener('mouseenter', function() {
@@ -281,29 +251,22 @@ const paperAnimation = {
     });
   },
 
-  /**
-   * 重置单个item状态 - 修复版
-   */
   resetItem: function(item) {
     if (typeof anime === 'undefined') return;
 
-    // 移除所有进行中的动画
     anime.remove(item.querySelectorAll('.text-char'));
     anime.remove(item.querySelector('.mainPaperItemFooter'));
 
-    // 重置item本身
     item.style.opacity = '1';
     item.style.transform = '';
     item.classList.remove('exploding');
     
-    // 重置所有字符
     const allChars = item.querySelectorAll('.text-char');
     allChars.forEach(char => {
       char.style.transform = 'translateX(0) translateY(0) translateZ(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1)';
       char.style.opacity = '1';
     });
 
-    // 重置footer
     const footer = item.querySelector('.mainPaperItemFooter');
     if (footer) {
       footer.style.transform = 'translateX(0) translateY(0) rotateZ(0deg) scale(1)';
@@ -311,9 +274,6 @@ const paperAnimation = {
     }
   },
 
-  /**
-   * 重置所有items
-   */
   resetAll: function() {
     const items = document.querySelectorAll('.mainPaperItem');
     items.forEach(item => {
@@ -323,7 +283,6 @@ const paperAnimation = {
   }
 };
 
-// ==================== 页面加载后初始化 ====================
 document.addEventListener('DOMContentLoaded', function() {
   setTimeout(() => {
     paperAnimation.init();

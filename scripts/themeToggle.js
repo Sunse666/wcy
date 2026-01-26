@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const themeToggle = document.getElementById("themeToggle");
   const html = document.documentElement;
   
-  // 主题配置
   const themes = {
     light: {
       name: "日间模式",
@@ -16,11 +15,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   let currentTheme = "light";
 
-  // 初始化主题
   function initTheme() {
     const savedTheme = localStorage.getItem("siteTheme");
     
-    // 优先使用保存的主题，其次检测系统偏好
     if (savedTheme) {
       currentTheme = savedTheme;
     } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -30,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function() {
     applyTheme(currentTheme, false);
   }
 
-  // 应用主题
   function applyTheme(theme, animate = true) {
     currentTheme = theme;
 
@@ -42,27 +38,22 @@ document.addEventListener("DOMContentLoaded", function() {
       themeToggle.classList.remove("dark");
     }
 
-    // 保存到本地存储
     localStorage.setItem("siteTheme", theme);
 
-    // 触发自定义事件，供其他模块监听
     window.dispatchEvent(new CustomEvent("themeChange", { 
       detail: { theme: theme } 
     }));
 
-    // 动画效果
     if (animate) {
       createRippleEffect();
     }
   }
 
-  // 切换主题
   function toggleTheme() {
     const newTheme = currentTheme === "light" ? "dark" : "light";
     applyTheme(newTheme);
   }
 
-  // 创建涟漪效果
   function createRippleEffect() {
     const ripple = document.createElement("div");
     ripple.className = "theme-ripple";
@@ -94,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 800);
   }
 
-  // 添加涟漪动画样式
   const style = document.createElement("style");
   style.textContent = `
     @keyframes themeRipple {
@@ -110,10 +100,8 @@ document.addEventListener("DOMContentLoaded", function() {
   `;
   document.head.appendChild(style);
 
-  // 监听点击
   themeToggle.addEventListener("click", toggleTheme);
 
-  // 监听系统主题变化
   if (window.matchMedia) {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
       if (!localStorage.getItem("siteTheme")) {
@@ -122,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  // 键盘快捷键 (Ctrl/Cmd + Shift + D)
   document.addEventListener("keydown", function(e) {
     if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "d") {
       e.preventDefault();
@@ -130,10 +117,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  // 初始化
   initTheme();
 
-  // 暴露全局API
   window.ThemeToggle = {
     toggle: toggleTheme,
     setTheme: applyTheme,

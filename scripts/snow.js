@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const canvas = document.getElementById("snowCanvas");
   const ctx = canvas.getContext("2d");
 
-  // === 配置项 ===
   const config = {
     numFlakes: 250,
     windSpeed: 0.3,
@@ -15,10 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
     colors: ["#ffffff", "#f0f8ff", "#e6f3ff", "#f5f0ff"],
     enableRandomColor: true,
     enableRandomOpacity: true,
-    enabled: true  // 雪花开关
+    enabled: true
   };
 
-  // 预设主题配置
   const themes = {
     winter: {
       name: "冬日白雪",
@@ -64,19 +62,16 @@ document.addEventListener("DOMContentLoaded", function () {
   let flakes = [];
   let animationId = null;
 
-  // 获取随机颜色
   function getRandomColor() {
     if (!config.enableRandomColor) return "#ffffff";
     return config.colors[Math.floor(Math.random() * config.colors.length)];
   }
 
-  // 获取随机透明度
   function getRandomOpacity() {
     if (!config.enableRandomOpacity) return config.opacityMax;
     return Math.random() * (config.opacityMax - config.opacityMin) + config.opacityMin;
   }
 
-  // 创建雪花
   function createFlake() {
     return {
       x: Math.random() * width,
@@ -90,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // 初始化雪花
   function initFlakes() {
     flakes = [];
     for (let i = 0; i < config.numFlakes; i++) {
@@ -98,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // 绘制雪花
   function drawFlakes() {
     ctx.clearRect(0, 0, width, height);
 
@@ -133,7 +126,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // 动画循环
   function animateSnow() {
     if (!config.enabled) {
       ctx.clearRect(0, 0, width, height);
@@ -143,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function () {
     animationId = requestAnimationFrame(animateSnow);
   }
 
-  // 应用主题
   function applyTheme(themeName) {
     if (themeName === "none") {
       config.enabled = false;
@@ -160,26 +151,21 @@ document.addEventListener("DOMContentLoaded", function () {
       config.enabled = true;
       currentTheme = themeName;
 
-      // 更新所有雪花
       flakes.forEach(flake => {
         flake.color = getRandomColor();
         flake.opacity = getRandomOpacity();
       });
 
-      // 如果动画未运行，启动它
       if (!animationId) {
         animateSnow();
       }
     }
 
-    // 保存到本地存储
     localStorage.setItem("snowTheme", themeName);
     
-    // 更新UI
     updateThemeUI(themeName);
   }
 
-  // 更新主题UI状态
   function updateThemeUI(themeName) {
     document.querySelectorAll(".snowThemeItem").forEach(item => {
       item.classList.remove("active");
@@ -189,7 +175,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // 初始化主题选择器
   function initThemeSelector() {
     const panel = document.getElementById("snowThemePanel");
     const toggle = document.getElementById("snowThemeToggle");
@@ -197,33 +182,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!panel || !toggle) return;
 
-    // 切换面板显示
     toggle.addEventListener("click", function(e) {
       e.stopPropagation();
       panel.classList.toggle("active");
     });
 
-    // 点击主题项
     themeItems.forEach(item => {
       item.addEventListener("click", function() {
         const themeName = this.dataset.theme;
         applyTheme(themeName);
         
-        // 延迟关闭面板
         setTimeout(() => {
           panel.classList.remove("active");
         }, 300);
       });
     });
 
-    // 点击外部关闭面板
     document.addEventListener("click", function(e) {
       if (!panel.contains(e.target)) {
         panel.classList.remove("active");
       }
     });
 
-    // 读取保存的主题
     const savedTheme = localStorage.getItem("snowTheme");
     if (savedTheme) {
       applyTheme(savedTheme);
@@ -232,18 +212,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // 初始化
   initFlakes();
   initThemeSelector();
   animateSnow();
 
-  // 窗口调整
   window.addEventListener("resize", () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
   });
 
-  // 暴露全局API
   window.SnowEffect = {
     setTheme: applyTheme,
     getTheme: () => currentTheme,

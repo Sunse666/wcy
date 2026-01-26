@@ -1,10 +1,9 @@
 (function() {
-  // 初始化函数
   function init() {
     const loading = document.getElementById('loading');
     const float = document.querySelector('.float');
     
-    if (!loading) return; // 防止元素不存在
+    if (!loading) return;
 
     function hideLoading() {
       setTimeout(function() {
@@ -24,7 +23,6 @@
       }, 1500);
     }
 
-    // 检查 load 事件是否已触发
     if (document.readyState === 'complete') {
       hideLoading();
     } else {
@@ -32,7 +30,6 @@
     }
   }
 
-  // 检查 DOMContentLoaded 是否已触发
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
