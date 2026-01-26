@@ -9,7 +9,6 @@
 </head>
 <body>
   <div class="lifePage">
-    <!-- Hero区域 -->
     <div class="lifeHero">
       <div class="heroIcon">
         <ion-icon name="sunny"></ion-icon>
@@ -27,7 +26,6 @@
       </div>
     </div>
 
-    <!-- 生活标签导航 -->
     <div class="lifeTags">
       <div class="tagItem active" data-filter="all">
         <ion-icon name="apps"></ion-icon>
@@ -47,9 +45,7 @@
       </div>
     </div>
 
-    <!-- 图片瀑布流展示区域 -->
     <div class="lifeGallery">
-      <!-- 主打大图 -->
       <div class="galleryItem featured" data-category="family" onclick="openLightbox(0)">
         <div class="itemImage">
           <img src="./png/mother.png" alt="妈妈">
@@ -68,7 +64,6 @@
         </div>
       </div>
 
-      <!-- 普通图片 -->
       <div class="galleryItem" data-category="family" onclick="openLightbox(1)">
         <div class="itemImage">
           <img src="./png/hxy.png" alt="幸福时光">
@@ -142,7 +137,6 @@
       </div>
     </div>
 
-    <!-- 统计信息 -->
     <div class="lifeStats">
       <div class="statItem">
         <div class="statNumber">5</div>
@@ -160,7 +154,6 @@
       </div>
     </div>
 
-    <!-- 底部装饰 -->
     <div class="lifeFooter">
       <ion-icon name="flower"></ion-icon>
       <span>记录生活，感恩陪伴</span>
@@ -168,7 +161,6 @@
     </div>
   </div>
 
-  <!-- 图片灯箱 -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
     <div class="lightboxContent">
       <button class="lightboxClose" onclick="closeLightbox(event)">
@@ -208,7 +200,6 @@
     </div>
   </div>
 
-  <!-- 主题切换按钮 -->
   <div class="themeToggle" id="themeToggle">
     <div class="toggleTrack">
       <div class="toggleSun">
@@ -223,7 +214,6 @@
   </div>
 
   <canvas id="snowCanvas"></canvas>
-  <!-- 雪花主题选择器 -->
   <div class="snowThemePanel" id="snowThemePanel">
     <div class="snowThemeToggle" id="snowThemeToggle">
       <ion-icon name="snow-outline"></ion-icon>
@@ -277,7 +267,6 @@
   <script src="./scripts/snow.js"></script>
   <script src="./scripts/themeToggle.js"></script>
   <script>
-    // 图片数据
     const images = [
       { src: './png/mother.png', title: '最爱的妈妈', sub: '永远的港湾' },
       { src: './png/hxy.png', title: '幸福时光', sub: '开心每一天' },
@@ -289,7 +278,6 @@
     let currentIndex = 0;
     let currentZoom = 1;
 
-    // 打开灯箱
     function openLightbox(index) {
       const lightbox = document.getElementById('lightbox');
       const img = document.getElementById('lightboxImage');
@@ -312,7 +300,6 @@
       document.getElementById('zoomLevel').textContent = '100%';
     }
 
-    // 关闭灯箱
     function closeLightbox(event) {
       if (event.target.id === 'lightbox' || event.target.closest('.lightboxClose')) {
         const lightbox = document.getElementById('lightbox');
@@ -321,7 +308,6 @@
       }
     }
 
-    // 切换图片
     function changeImage(direction, event) {
       event.stopPropagation();
       
@@ -349,7 +335,6 @@
       }, 200);
     }
 
-    // 缩放图片
     function zoomImage(delta, event) {
       event.stopPropagation();
       currentZoom += delta;
@@ -360,7 +345,6 @@
       document.getElementById('zoomLevel').textContent = Math.round(currentZoom * 100) + '%';
     }
 
-    // 重置缩放
     function resetZoom(event) {
       event.stopPropagation();
       currentZoom = 1;
@@ -369,10 +353,8 @@
       document.getElementById('zoomLevel').textContent = '100%';
     }
 
-    // 标签筛选功能
     document.querySelectorAll('.tagItem').forEach(tag => {
       tag.addEventListener('click', function() {
-        // 切换active状态
         document.querySelectorAll('.tagItem').forEach(t => t.classList.remove('active'));
         this.classList.add('active');
         
@@ -390,7 +372,6 @@
       });
     });
 
-    // 键盘事件
     document.addEventListener('keydown', (e) => {
       const lightbox = document.getElementById('lightbox');
       if (!lightbox.classList.contains('active')) return;
