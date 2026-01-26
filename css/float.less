@@ -9,14 +9,14 @@
   right: 8vw;
   border-radius: 7.5px;
   overflow: hidden;
-  background: @color-bg;
+  background: var(--color-bg);
   transition: border-radius 0.75s ease-out, 
-              width 0.75s ease-out, 
-              height 0.75s ease-out, 
-              bottom 0.75s ease-out, 
-              right 0.75s ease-out, 
-              box-shadow 0.75s ease-out 0.5s;
-  z-index: 1000;
+    width 0.75s ease-out, 
+    height 0.75s ease-out, 
+    bottom 0.75s ease-out, 
+    right 0.75s ease-out, 
+    box-shadow 0.75s ease-out 0.5s;
+  z-index: 999;
 
   .menu {
     display: none;
@@ -53,7 +53,7 @@
     height: @float-size;
     bottom: 0;
     border-radius: 50%;
-    background-color: @color-float-bg;
+    background-color: var(--color-float-bg);
     transition: all 0.3s ease-in 0.2s;
 
     ion-icon {
@@ -73,6 +73,7 @@
     &.menuPricetags .floatLinkPricetags { display: block; }
     &.menuFloder .floatLinkFolder { display: block; }
     &.menuBookmarks .floatLinkBookmarks { display: block; }
+    &.menuPalette .floatLinkPalette { display: block; }
     &.menuAbout .floatLinkInformation { display: block; }
   }
 
@@ -84,8 +85,8 @@
     bottom: calc(16vh - (@float-size - @float-size-small) / 2);
     right: calc(8vw - (@float-size - @float-size-small) / 2);
     border-radius: 26.25px;
-    background-color: @color-bg;
-    box-shadow: @shadow-glow;
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-glow);
     transition: all 0.3s ease-in;
 
     .menu {
@@ -96,7 +97,7 @@
   // 激活状态
   &.active {
     width: @float-size;
-    height: 422.5px;
+    height: 475px;
     bottom: calc(16vh - (@float-size - @float-size-small) / 2);
     right: calc(8vw - (@float-size - @float-size-small) / 2);
     border-radius: 26.25px;

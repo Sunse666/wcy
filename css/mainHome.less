@@ -146,7 +146,7 @@
         height: 50px;
         border-radius: 50%;
         background: @color-primary;
-        box-shadow: 0px 3px 10px rgba(95, 248, 100, 0.5);
+        box-shadow: 0px 3px 10px var(--glow-primary);;
 
         // 小屏幕时图标稍小
         @media (max-width: 480px) {
@@ -190,7 +190,7 @@
 
       &:hover {
         transform: translateY(-5px);
-        box-shadow: 0px 10px 25px rgba(95, 248, 100, 0.5);
+        box-shadow: 0px 10px 25px var(--glow-primary);
 
         // 小屏幕时改为横向移动
         @media (max-width: 480px) {
@@ -233,7 +233,6 @@
         padding: 15px 20px;
         border-radius: @border-radius-small;
         background: @color-bg;
-        text-decoration: none;
         transition: all 0.3s ease;
 
         .recentDot {
@@ -241,7 +240,7 @@
           height: 8px;
           border-radius: 50%;
           background: @color-primary;
-          box-shadow: 0 0 8px rgba(95, 248, 100, 0.8);
+          box-shadow: 0 0 8px var(--glow-strong);
           animation: pulseDot 1.5s ease-in-out infinite;
         }
 
@@ -259,7 +258,7 @@
         }
 
         &:hover {
-          background: #c5f5c9;
+          background: var(--color-card-hover);
           transform: translateX(5px);
         }
       }

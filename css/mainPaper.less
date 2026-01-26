@@ -26,15 +26,15 @@
       min-height: 180px;
       padding: 20px;
       border-radius: @border-radius-medium;
-      background: @color-primary-light;
-      box-shadow: 0px 0px 15px rgba(172, 252, 190, 0.9);
+      background: var(--color-primary-light);
+      box-shadow: 0px 0px 15px var(--glow-extra);
       transform-style: preserve-3d;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       overflow: hidden;
 
       &:hover {
         transform: translateY(-5px);
-        box-shadow: 0px 10px 30px rgba(172, 252, 190, 0.6);
+        box-shadow: 0px 10px 30px var(--glow-primary);
       }
 
       &.exploding {
@@ -112,15 +112,15 @@
         height: 80%;
         min-height: 100px;
         border-radius: @border-radius-small;
-        background: @color-primary;
-        box-shadow: 0px 0px 10px rgba(95, 248, 100, 0.9);
+        background: var(--color-primary);
+        box-shadow: 0px 0px 10px var(--glow-extra);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
         flex-shrink: 0; // 防止被压缩
 
         &:hover {
           transform: scale(1.1);
-          box-shadow: 0px 0px 20px rgba(95, 248, 100, 1);
+          box-shadow: 0px 0px 20px var(--glow-extra);
 
           ion-icon {
             animation: none;

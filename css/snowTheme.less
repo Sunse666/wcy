@@ -1,0 +1,248 @@
+// 雪花主题选择器样式
+.snowThemePanel {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 1001;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+
+  // 切换按钮
+  .snowThemeToggle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, @color-primary, @color-primary-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px @shadow-light;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.3));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover {
+      transform: scale(1.1) rotate(15deg);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    ion-icon {
+      font-size: 24px;
+      color: @color-primary-light;
+      animation: snowFloat 2s ease-in-out infinite;
+    }
+  }
+
+  // 主题列表容器
+  .snowThemeList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    background: @color-primary-light;
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: @shadow-light;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-20px) scale(0.9);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  // 展开状态
+  &.active {
+    .snowThemeToggle {
+      background: linear-gradient(135deg, @color-primary-dark, @color-primary);
+      transform: rotate(180deg);
+    }
+
+    .snowThemeList {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0) scale(1);
+      max-height: 500px;
+    }
+  }
+
+  // 单个主题项
+  .snowThemeItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: transparent;
+    color: @color-text-dark;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+      transform: translateX(5px);
+    }
+
+    &.active {
+      background: linear-gradient(135deg, @color-primary-light, @color-primary);
+    }
+
+    // 预览圆点容器
+    .themePreview {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3px;
+      position: relative;
+      overflow: hidden;
+
+      span {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        animation: previewFloat 1.5s ease-in-out infinite;
+
+        &:nth-child(1) { animation-delay: 0s; }
+        &:nth-child(2) { animation-delay: 0.3s; }
+        &:nth-child(3) { animation-delay: 0.6s; }
+      }
+
+      ion-icon {
+        font-size: 20px;
+        color: #999;
+      }
+
+      // 各主题预览样式
+      &.winter {
+        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+        span { background: white; box-shadow: 0 0 5px rgba(255,255,255,0.8); }
+      }
+
+      &.romantic {
+        background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+        span:nth-child(1) { background: #ffb6c1; }
+        span:nth-child(2) { background: #ffc0cb; }
+        span:nth-child(3) { background: #ff69b4; }
+      }
+
+      &.rainbow {
+        background: linear-gradient(135deg, #e8f5e9, #fff3e0, #fce4ec);
+        span:nth-child(1) { background: #ff6b6b; }
+        span:nth-child(2) { background: #48dbfb; }
+        span:nth-child(3) { background: #ff9ff3; }
+      }
+
+      &.christmas {
+        background: linear-gradient(135deg, #c62828, #2e7d32);
+        span:nth-child(1) { background: #ffd700; }
+        span:nth-child(2) { background: #ffffff; }
+        span:nth-child(3) { background: #ff4444; }
+      }
+
+      &.aurora {
+        background: linear-gradient(135deg, #1a237e, #004d40);
+        span:nth-child(1) { background: #00ffcc; }
+        span:nth-child(2) { background: #00ff99; }
+        span:nth-child(3) { background: #99ffff; }
+      }
+
+      &.sakura {
+        background: linear-gradient(135deg, #fce4ec, #f3e5f5);
+        span:nth-child(1) { background: #ffb7c5; }
+        span:nth-child(2) { background: #ffc0cb; }
+        span:nth-child(3) { background: #ffd1dc; }
+      }
+
+      &.none {
+        background: linear-gradient(135deg, #eeeeee, #e0e0e0);
+      }
+    }
+
+    .themeName {
+      font-size: 14px;
+      font-weight: 500;
+      color: @color-text-dark;
+      white-space: nowrap;
+      transition: color 0.3s ease;
+    }
+  }
+}
+
+// 预览动画
+@keyframes previewFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes snowFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(10deg); }
+}
+
+// 响应式适配
+@media (max-width: 768px) {
+  .snowThemePanel {
+    left: 10px;
+    bottom: 10px;
+
+    .snowThemeToggle {
+      width: 44px;
+      height: 44px;
+
+      ion-icon {
+        font-size: 20px;
+      }
+    }
+
+    .snowThemeList {
+      padding: 8px;
+    }
+
+    .snowThemeItem {
+      padding: 8px 10px;
+
+      .themePreview {
+        width: 32px;
+        height: 32px;
+
+        span {
+          width: 6px;
+          height: 6px;
+        }
+      }
+
+      .themeName {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+#snowCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}

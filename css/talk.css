@@ -1,3 +1,514 @@
+:root {
+  --color-bg: #d5ffd9;
+  --color-bg-secondary: #e8f5e9;
+  --color-primary: #5ff864;
+  --color-primary-light: #acfcbe;
+  --color-primary-dark: #25d029;
+  --color-float-bg: #f0f9f0;
+  --color-text-dark: #1a8c1d;
+  --color-text-medium: #2ea832;
+  --color-text-light: #49d03f;
+  --color-text-gray: #9cd09e;
+  --color-text-yellow: #80d030;
+  --color-gradient-start: #acfcbe;
+  --color-gradient-mid: #7df58e;
+  --color-gradient-end: #5ff864;
+  --color-white-transparent: rgba(255, 255, 255, 0.2);
+  --color-black-transparent: rgba(0, 0, 0, 0.1);
+  --shadow-light: 0px 5px 15px rgba(172, 252, 190, 0.6);
+  --shadow-medium: 0px 5px 20px rgba(37, 208, 41, 0.3);
+  --shadow-glow: 0px 0px 15px rgba(82, 244, 104, 0.9);
+  --shadow-primary: 0px 10px 30px rgba(95, 248, 100, 0.4);
+  --color-card-bg: #c4f5c8;
+  --color-card-hover: #c5f5c9;
+  --glow-primary: rgba(95, 248, 100, 0.5);
+  --glow-strong: rgba(95, 248, 100, 0.8);
+  --glow-extra: rgba(95, 248, 100, 0.9);
+}
+[data-theme="dark"] {
+  --color-bg: #0d1117;
+  --color-bg-secondary: #161b22;
+  --color-primary: #40c845;
+  --color-primary-light: #1a3a1c;
+  --color-primary-dark: #7cfc81;
+  --color-float-bg: #1a3a1c;
+  --color-text-dark: #ddf8e3;
+  --color-text-medium: #b1bac4;
+  --color-text-light: #cad9c9;
+  --color-text-gray: #8b9e8e;
+  --color-text-yellow: #c0e341;
+  --color-gradient-start: #1a3a1c;
+  --color-gradient-mid: #0d2818;
+  --color-gradient-end: #0a1f13;
+  --color-white-transparent: rgba(255, 255, 255, 0.08);
+  --color-black-transparent: rgba(0, 0, 0, 0.3);
+  --shadow-light: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  --shadow-medium: 0px 5px 20px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 25px rgba(95, 248, 100, 0.4);
+  --shadow-primary: 0px 8px 32px rgba(95, 248, 100, 0.35);
+  --color-card-bg: #1a3a1c;
+  --color-card-hover: #234525;
+  --glow-primary: rgba(95, 248, 100, 0.6);
+  --glow-strong: rgba(95, 248, 100, 0.9);
+  --glow-extra: #5ff864;
+}
+.snowThemePanel {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 1001;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+.snowThemePanel .snowThemeToggle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px var(--shadow-light);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.snowThemePanel .snowThemeToggle::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.3));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.snowThemePanel .snowThemeToggle:hover {
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+.snowThemePanel .snowThemeToggle:hover::before {
+  opacity: 1;
+}
+.snowThemePanel .snowThemeToggle ion-icon {
+  font-size: 24px;
+  color: var(--color-primary-light);
+  animation: snowFloat 2s ease-in-out infinite;
+}
+.snowThemePanel .snowThemeList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: var(--color-primary-light);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: var(--shadow-light);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-20px) scale(0.9);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  max-height: 0;
+  overflow: hidden;
+}
+.snowThemePanel.active .snowThemeToggle {
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  transform: rotate(180deg);
+}
+.snowThemePanel.active .snowThemeList {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0) scale(1);
+  max-height: 500px;
+}
+.snowThemePanel .snowThemeItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: var(--color-text-dark);
+}
+.snowThemePanel .snowThemeItem:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: translateX(5px);
+}
+.snowThemePanel .snowThemeItem.active {
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+}
+.snowThemePanel .snowThemeItem .themePreview {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  position: relative;
+  overflow: hidden;
+}
+.snowThemePanel .snowThemeItem .themePreview span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: previewFloat 1.5s ease-in-out infinite;
+}
+.snowThemePanel .snowThemeItem .themePreview span:nth-child(1) {
+  animation-delay: 0s;
+}
+.snowThemePanel .snowThemeItem .themePreview span:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.snowThemePanel .snowThemeItem .themePreview span:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.snowThemePanel .snowThemeItem .themePreview ion-icon {
+  font-size: 20px;
+  color: #999;
+}
+.snowThemePanel .snowThemeItem .themePreview.winter {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+}
+.snowThemePanel .snowThemeItem .themePreview.winter span {
+  background: white;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+.snowThemePanel .snowThemeItem .themePreview.romantic {
+  background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+}
+.snowThemePanel .snowThemeItem .themePreview.romantic span:nth-child(1) {
+  background: #ffb6c1;
+}
+.snowThemePanel .snowThemeItem .themePreview.romantic span:nth-child(2) {
+  background: #ffc0cb;
+}
+.snowThemePanel .snowThemeItem .themePreview.romantic span:nth-child(3) {
+  background: #ff69b4;
+}
+.snowThemePanel .snowThemeItem .themePreview.rainbow {
+  background: linear-gradient(135deg, #e8f5e9, #fff3e0, #fce4ec);
+}
+.snowThemePanel .snowThemeItem .themePreview.rainbow span:nth-child(1) {
+  background: #ff6b6b;
+}
+.snowThemePanel .snowThemeItem .themePreview.rainbow span:nth-child(2) {
+  background: #48dbfb;
+}
+.snowThemePanel .snowThemeItem .themePreview.rainbow span:nth-child(3) {
+  background: #ff9ff3;
+}
+.snowThemePanel .snowThemeItem .themePreview.christmas {
+  background: linear-gradient(135deg, #c62828, #2e7d32);
+}
+.snowThemePanel .snowThemeItem .themePreview.christmas span:nth-child(1) {
+  background: #ffd700;
+}
+.snowThemePanel .snowThemeItem .themePreview.christmas span:nth-child(2) {
+  background: #ffffff;
+}
+.snowThemePanel .snowThemeItem .themePreview.christmas span:nth-child(3) {
+  background: #ff4444;
+}
+.snowThemePanel .snowThemeItem .themePreview.aurora {
+  background: linear-gradient(135deg, #1a237e, #004d40);
+}
+.snowThemePanel .snowThemeItem .themePreview.aurora span:nth-child(1) {
+  background: #00ffcc;
+}
+.snowThemePanel .snowThemeItem .themePreview.aurora span:nth-child(2) {
+  background: #00ff99;
+}
+.snowThemePanel .snowThemeItem .themePreview.aurora span:nth-child(3) {
+  background: #99ffff;
+}
+.snowThemePanel .snowThemeItem .themePreview.sakura {
+  background: linear-gradient(135deg, #fce4ec, #f3e5f5);
+}
+.snowThemePanel .snowThemeItem .themePreview.sakura span:nth-child(1) {
+  background: #ffb7c5;
+}
+.snowThemePanel .snowThemeItem .themePreview.sakura span:nth-child(2) {
+  background: #ffc0cb;
+}
+.snowThemePanel .snowThemeItem .themePreview.sakura span:nth-child(3) {
+  background: #ffd1dc;
+}
+.snowThemePanel .snowThemeItem .themePreview.none {
+  background: linear-gradient(135deg, #eeeeee, #e0e0e0);
+}
+.snowThemePanel .snowThemeItem .themeName {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-dark);
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+@keyframes previewFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes snowFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(10deg);
+  }
+}
+@media (max-width: 768px) {
+  .snowThemePanel {
+    left: 10px;
+    bottom: 10px;
+  }
+  .snowThemePanel .snowThemeToggle {
+    width: 44px;
+    height: 44px;
+  }
+  .snowThemePanel .snowThemeToggle ion-icon {
+    font-size: 20px;
+  }
+  .snowThemePanel .snowThemeList {
+    padding: 8px;
+  }
+  .snowThemePanel .snowThemeItem {
+    padding: 8px 10px;
+  }
+  .snowThemePanel .snowThemeItem .themePreview {
+    width: 32px;
+    height: 32px;
+  }
+  .snowThemePanel .snowThemeItem .themePreview span {
+    width: 6px;
+    height: 6px;
+  }
+  .snowThemePanel .snowThemeItem .themeName {
+    font-size: 12px;
+  }
+}
+#snowCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+.themeToggle {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  z-index: 1001;
+  cursor: pointer;
+}
+.themeToggle .toggleGlow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 30px;
+  background: var(--glow-primary);
+  filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+}
+.themeToggle:hover .toggleGlow {
+  opacity: 0.6;
+}
+.themeToggle .toggleTrack {
+  position: relative;
+  width: 70px;
+  height: 35px;
+  border-radius: 35px;
+  background: linear-gradient(135deg, #87ebcb 0%, #00ff48 50%, #4dff35 100%);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2), 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  overflow: hidden;
+}
+.themeToggle .toggleTrack::before {
+  content: '✦ ✧';
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-size: 8px;
+  color: transparent;
+  letter-spacing: 3px;
+  transition: all 0.5s ease;
+}
+.themeToggle .toggleTrack::after {
+  content: '☁';
+  position: absolute;
+  top: 6px;
+  right: 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.5s ease;
+}
+.themeToggle .toggleSun {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease;
+  opacity: 1;
+}
+.themeToggle .toggleSun ion-icon {
+  font-size: 18px;
+  color: #51ff00;
+  filter: drop-shadow(0 0 5px rgba(102, 255, 0, 0.8));
+  animation: sunPulse 2s ease-in-out infinite;
+}
+.themeToggle .toggleMoon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease;
+  opacity: 0.5;
+}
+.themeToggle .toggleMoon ion-icon {
+  font-size: 16px;
+  color: #c9d1d9;
+  filter: drop-shadow(0 0 3px rgba(200, 200, 255, 0.5));
+}
+.themeToggle .toggleThumb {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2), inset 0 -2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.themeToggle .toggleThumb::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+}
+.themeToggle .toggleThumb::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--glow-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.themeToggle:hover .toggleThumb::after {
+  opacity: 1;
+}
+.themeToggle.dark .toggleTrack {
+  background: linear-gradient(135deg, #0d1117 0%, #1a1a3e 50%, #2d1b4e 100%);
+}
+.themeToggle.dark .toggleTrack::before {
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+.themeToggle.dark .toggleTrack::after {
+  opacity: 0;
+  transform: translateX(20px);
+}
+.themeToggle.dark .toggleSun {
+  opacity: 0.3;
+}
+.themeToggle.dark .toggleSun ion-icon {
+  animation: none;
+  color: #666;
+  filter: none;
+}
+.themeToggle.dark .toggleMoon {
+  opacity: 1;
+}
+.themeToggle.dark .toggleMoon ion-icon {
+  color: #ffeaa7;
+  filter: drop-shadow(0 0 8px rgba(255, 234, 167, 0.8));
+  animation: moonGlow 2s ease-in-out infinite;
+}
+.themeToggle.dark .toggleThumb {
+  left: calc(100% - 31px);
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4), 0 0 20px rgba(95, 248, 100, 0.3);
+}
+.themeToggle.dark .toggleThumb::before {
+  background: rgba(255, 255, 255, 0.2);
+}
+.themeToggle.dark .toggleGlow {
+  background: rgba(95, 248, 100, 0.4);
+}
+@keyframes sunPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px #ffd700);
+  }
+}
+@keyframes moonGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 8px rgba(255, 234, 167, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px #ffeaa7);
+  }
+}
+@media (max-width: 768px) {
+  .themeToggle {
+    left: 10px;
+    top: 10px;
+  }
+  .themeToggle .toggleTrack {
+    width: 60px;
+    height: 30px;
+  }
+  .themeToggle .toggleThumb {
+    width: 22px;
+    height: 22px;
+  }
+  .themeToggle.dark .toggleThumb {
+    left: calc(100% - 26px);
+  }
+  .themeToggle .toggleSun ion-icon,
+  .themeToggle .toggleMoon ion-icon {
+    font-size: 14px;
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +516,7 @@
 }
 body {
   font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  background: #f0fff4;
+  background: var(--color-bg);
   min-height: 100vh;
 }
 .momPage {
@@ -27,8 +538,8 @@ body {
   width: 100%;
   height: 220px;
   border-radius: 20px;
-  background: linear-gradient(135deg, #a8ffc4 0%, #7af99d 50%, #5ff864 100%);
-  box-shadow: 0px 10px 40px rgba(95, 248, 100, 0.3);
+  background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-mid) 50%, var(--color-gradient-end) 100%);
+  box-shadow: var(--shadow-primary);
   overflow: hidden;
 }
 .momHero .heroIcon {
@@ -38,8 +549,8 @@ body {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background: #f0fff4;
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+  background: var(--color-bg);
+  box-shadow: var(--shadow-medium);
   animation: pulse 2s ease-in-out infinite;
 }
 .momHero .heroIcon ion-icon {
@@ -53,12 +564,12 @@ body {
 .momHero .heroTitle {
   font-size: 2em;
   font-weight: 700;
-  color: #1a3a1c;
+  color: var(--color-text-dark);
   letter-spacing: 4px;
 }
 .momHero .heroSubtitle {
   font-size: 1em;
-  color: #3d6b40;
+  color: var(--color-text-medium);
   margin-top: 8px;
   opacity: 0.9;
 }
@@ -73,7 +584,7 @@ body {
 .momHero .heroDecor span {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--color-white-transparent);
   animation: floatBubble 4s ease-in-out infinite;
 }
 .momHero .heroDecor span:nth-child(1) {
@@ -124,8 +635,8 @@ body {
 .momGallery .galleryItem {
   position: relative;
   border-radius: 15px;
-  background: #e8ffe8;
-  box-shadow: 0px 3px 15px rgba(172, 252, 190, 0.4);
+  background: var(--color-primary-light);
+  box-shadow: var(--shadow-light);
   overflow: hidden;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -171,7 +682,7 @@ body {
 }
 .momGallery .galleryItem .itemOverlay ion-icon {
   font-size: 3em;
-  color: #f5fff5;
+  color: var(--color-text-light);
   transform: scale(0.5);
   transition: transform 0.3s ease;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
@@ -193,14 +704,14 @@ body {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #5ff864;
+  background: var(--color-primary);
   box-shadow: 0 0 10px rgba(95, 248, 100, 0.8);
   animation: pulseDot 1.5s ease-in-out infinite;
 }
 .momGallery .galleryItem .itemLabel .labelText {
   font-size: 1em;
   font-weight: 600;
-  color: #f5fff5;
+  color: var(--color-text-light);
   letter-spacing: 1px;
 }
 .momGallery .galleryItem:hover {
@@ -225,13 +736,13 @@ body {
   align-items: center;
   gap: 15px;
   padding: 30px;
-  color: #3d6b40;
+  color: var(--color-text-medium);
   font-size: 0.95em;
   opacity: 0.8;
 }
 .momFooter ion-icon {
   font-size: 1.2em;
-  color: #5ff864;
+  color: var(--color-primary);
   animation: swing 2s ease-in-out infinite;
 }
 .momFooter ion-icon:last-child {
@@ -275,8 +786,8 @@ body {
   height: 45px;
   border: none;
   border-radius: 50%;
-  background: #5ff864;
-  color: #1a3a1c;
+  background: var(--color-primary);
+  color: var(--color-text-dark);
   font-size: 1.5em;
   cursor: pointer;
   display: flex;
@@ -318,7 +829,7 @@ body {
 .lightbox .lightboxCaption {
   text-align: center;
   padding: 20px;
-  color: #f5fff5;
+  color: var(--color-text-light);
   font-size: 1.2em;
   font-weight: 500;
   letter-spacing: 2px;
@@ -338,7 +849,7 @@ body {
   border: none;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
-  color: #f5fff5;
+  color: var(--color-text-light);
   font-size: 1.5em;
   cursor: pointer;
   display: flex;
@@ -348,8 +859,8 @@ body {
   backdrop-filter: blur(10px);
 }
 .lightbox .lightboxNav:hover {
-  background: #5ff864;
-  color: #1a3a1c;
+  background: var(--color-primary);
+  color: var(--color-text-dark);
   transform: translateY(-50%) scale(1.1);
 }
 @media (max-width: 600px) {
@@ -394,7 +905,7 @@ body {
   border: none;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
-  color: #f5fff5;
+  color: var(--color-text-light);
   font-size: 1.2em;
   cursor: pointer;
   display: flex;
@@ -403,11 +914,11 @@ body {
   transition: all 0.3s ease;
 }
 .lightbox .lightboxControls button:hover {
-  background: #5ff864;
-  color: #1a3a1c;
+  background: var(--color-primary);
+  color: var(--color-text-dark);
 }
 .lightbox .lightboxControls span {
-  color: #f5fff5;
+  color: var(--color-text-light);
   font-size: 0.9em;
   min-width: 50px;
   text-align: center;
