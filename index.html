@@ -193,19 +193,21 @@
     <div class="mainPricetags"></div>
     <div class="mainFloder"></div>
     <div class="mainBookmarks"></div>
+    <div class="mainPalette"></div>
     <div class="mainAbout"></div>
   </div>
 
   <div class="float">
     <div class="floatMenu">
       <ul class="menu">
-        <li><a class="floatMenuHome"><ion-icon name="home-outline"></ion-icon></a></li>
-        <li><a class="floatMenuPaper"><ion-icon name="paper-plane-outline"></ion-icon></a></li>
-        <li><a class="floatMenuPricetags"><ion-icon name="pricetags-outline"></ion-icon></a></li>
-        <li><a class="floatMenuFloder"><ion-icon name="folder-open-outline"></ion-icon></a></li>
-        <li><a class="floatMenuBookmarks"><ion-icon name="bookmarks-outline"></ion-icon></a></li>
-        <li><a class="floatMenuAbout"><ion-icon name="information-circle-outline"></ion-icon></a></li>
-        <li><a class="floatMenuClose"><ion-icon name="close-outline"></ion-icon></a></li>
+        <li><a class="floatMenuHome" href="#"><ion-icon name="home-outline"></ion-icon></a></li>
+        <li><a class="floatMenuPaper" href="#"><ion-icon name="paper-plane-outline"></ion-icon></a></li>
+        <li><a class="floatMenuPricetags" href="#"><ion-icon name="pricetags-outline"></ion-icon></a></li>
+        <li><a class="floatMenuFloder" href="#"><ion-icon name="folder-open-outline"></ion-icon></a></li>
+        <li><a class="floatMenuBookmarks" href="#"><ion-icon name="bookmarks-outline"></ion-icon></a></li>
+        <li><a class="floatMenuPalette" href="#"><ion-icon name="color-palette-outline"></ion-icon></a></li>
+        <li><a class="floatMenuAbout" href="#"><ion-icon name="information-circle-outline"></ion-icon></a></li>
+        <li><a class="floatMenuClose" href="#"><ion-icon name="close-outline"></ion-icon></a></li>
       </ul>
     </div>
     <div class="floatCover">
@@ -214,7 +216,74 @@
       <ion-icon name="pricetags-outline" class="floatLinkPricetags"></ion-icon>
       <ion-icon name="folder-open-outline" class="floatLinkFolder"></ion-icon>
       <ion-icon name="bookmarks-outline" class="floatLinkBookmarks"></ion-icon>
+      <ion-icon name="color-palette-outline" class="floatLinkPalette"></ion-icon>
       <ion-icon name="information-circle-outline" class="floatLinkInformation"></ion-icon>
+    </div>
+  </div>
+
+  <!-- 主题切换按钮 -->
+  <div class="themeToggle" id="themeToggle">
+    <div class="toggleTrack">
+      <div class="toggleSun">
+        <ion-icon name="sunny-outline"></ion-icon>
+      </div>
+      <div class="toggleMoon">
+        <ion-icon name="moon-outline"></ion-icon>
+      </div>
+      <div class="toggleThumb"></div>
+    </div>
+    <div class="toggleGlow"></div>
+  </div>
+
+  <canvas id="snowCanvas"></canvas>
+  <!-- 雪花主题选择器 -->
+  <div class="snowThemePanel" id="snowThemePanel">
+    <div class="snowThemeToggle" id="snowThemeToggle">
+      <ion-icon name="snow-outline"></ion-icon>
+    </div>
+    <div class="snowThemeList">
+      <div class="snowThemeItem" data-theme="winter">
+        <div class="themePreview winter">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="themeName">冬日白雪</span>
+      </div>
+      <div class="snowThemeItem" data-theme="romantic">
+        <div class="themePreview romantic">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="themeName">浪漫粉色</span>
+      </div>
+      <div class="snowThemeItem" data-theme="rainbow">
+        <div class="themePreview rainbow">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="themeName">梦幻彩虹</span>
+      </div>
+      <div class="snowThemeItem" data-theme="christmas">
+        <div class="themePreview christmas">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="themeName">金色圣诞</span>
+      </div>
+      <div class="snowThemeItem" data-theme="aurora">
+        <div class="themePreview aurora">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="themeName">极光之夜</span>
+      </div>
+      <div class="snowThemeItem" data-theme="sakura">
+        <div class="themePreview sakura">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="themeName">樱花飘落</span>
+      </div>
+      <div class="snowThemeItem" data-theme="none">
+        <div class="themePreview none">
+          <ion-icon name="close-outline"></ion-icon>
+        </div>
+        <span class="themeName">关闭雪花</span>
+      </div>
     </div>
   </div>
 
@@ -224,5 +293,7 @@
   <script src="./scripts/loading.js"></script>
   <script src="./scripts/index.js"></script>
   <script src="./scripts/paperAnimation.js"></script>
+  <script src="./scripts/snow.js"></script>
+  <script src="./scripts/themeToggle.js"></script>
 </body>
 </html>

@@ -208,6 +208,74 @@
     </div>
   </div>
 
+  <!-- 主题切换按钮 -->
+  <div class="themeToggle" id="themeToggle">
+    <div class="toggleTrack">
+      <div class="toggleSun">
+        <ion-icon name="sunny-outline"></ion-icon>
+      </div>
+      <div class="toggleMoon">
+        <ion-icon name="moon-outline"></ion-icon>
+      </div>
+      <div class="toggleThumb"></div>
+    </div>
+    <div class="toggleGlow"></div>
+  </div>
+
+  <canvas id="snowCanvas"></canvas>
+  <!-- 雪花主题选择器 -->
+  <div class="snowThemePanel" id="snowThemePanel">
+    <div class="snowThemeToggle" id="snowThemeToggle">
+      <ion-icon name="snow-outline"></ion-icon>
+    </div>
+    <div class="snowThemeList">
+      <div class="snowThemeItem" data-theme="winter">
+        <div class="themePreview winter">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="themeName">冬日白雪</span>
+      </div>
+      <div class="snowThemeItem" data-theme="romantic">
+        <div class="themePreview romantic">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="themeName">浪漫粉色</span>
+      </div>
+      <div class="snowThemeItem" data-theme="rainbow">
+        <div class="themePreview rainbow">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="themeName">梦幻彩虹</span>
+      </div>
+      <div class="snowThemeItem" data-theme="christmas">
+        <div class="themePreview christmas">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="themeName">金色圣诞</span>
+      </div>
+      <div class="snowThemeItem" data-theme="aurora">
+        <div class="themePreview aurora">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="themeName">极光之夜</span>
+      </div>
+      <div class="snowThemeItem" data-theme="sakura">
+        <div class="themePreview sakura">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="themeName">樱花飘落</span>
+      </div>
+      <div class="snowThemeItem" data-theme="none">
+        <div class="themePreview none">
+          <ion-icon name="close-outline"></ion-icon>
+        </div>
+        <span class="themeName">关闭雪花</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="./scripts/snow.js"></script>
+  <script src="./scripts/themeToggle.js"></script>
   <script>
     // 图片数据
     const images = [
