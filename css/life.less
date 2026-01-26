@@ -1,4 +1,3 @@
-// ============ 变量定义 ============
 @color-bg: #f0fff4;
 @color-primary: #5ff864;
 @color-primary-light: #e8ffe8;
@@ -25,7 +24,6 @@
 @import "snowTheme.less";
 @import "themeToggle.less";
 
-// ============ 基础重置 ============
 * {
   margin: 0;
   padding: 0;
@@ -38,7 +36,6 @@ body {
   min-height: 100vh;
 }
 
-// ============ 主容器 ============
 .lifePage {
   display: flex;
   flex-direction: column;
@@ -50,7 +47,6 @@ body {
   animation: fadeInUp 0.8s ease-out both;
 }
 
-// ============ Hero区域 ============
 .lifeHero {
   display: flex;
   flex-direction: column;
@@ -123,7 +119,6 @@ body {
   }
 }
 
-// ============ 标签导航 ============
 .lifeTags {
   display: flex;
   justify-content: center;
@@ -175,7 +170,6 @@ body {
   }
 }
 
-// ============ 图片瀑布流 ============
 .lifeGallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -210,7 +204,6 @@ body {
     &:nth-child(4) { animation-delay: 0.2s; }
     &:nth-child(5) { animation-delay: 0.25s; }
 
-    // 主打大图样式
     &.featured {
       grid-column: span 2;
       grid-row: span 2;
@@ -335,7 +328,6 @@ body {
   }
 }
 
-// ============ 统计信息 ============
 .lifeStats {
   display: flex;
   justify-content: center;
@@ -383,7 +375,6 @@ body {
   }
 }
 
-// ============ 底部装饰 ============
 .lifeFooter {
   display: flex;
   justify-content: center;
@@ -406,7 +397,6 @@ body {
   }
 }
 
-// ============ 灯箱样式 ============
 .lightbox {
   position: fixed;
   top: 0;
@@ -605,7 +595,6 @@ body {
   }
 }
 
-// ============ 动画定义 ============
 @keyframes fadeInUp {
   0% { opacity: 0; transform: translateY(30px); }
   100% { opacity: 1; transform: translateY(0); }

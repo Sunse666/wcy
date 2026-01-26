@@ -116,7 +116,7 @@
         box-shadow: 0px 0px 10px var(--glow-extra);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
-        flex-shrink: 0; // 防止被压缩
+        flex-shrink: 0;
 
         &:hover {
           transform: scale(1.1);
@@ -146,9 +146,6 @@
         }
       }
 
-      // ============ 响应式布局 ============
-      
-      // 平板端 (768px 以下)
       @media screen and (max-width: 768px) {
         flex-direction: column;
         min-height: auto;
@@ -162,7 +159,7 @@
 
           .paperTitle {
             font-size: 1.3em;
-            white-space: normal; // 允许换行
+            white-space: normal;
             word-break: break-word;
           }
 
@@ -184,7 +181,7 @@
           border-radius: @border-radius-small;
 
           &:hover {
-            transform: scale(1.02); // 移动端缩放小一点
+            transform: scale(1.02);
           }
 
           a ion-icon {
@@ -194,7 +191,6 @@
         }
       }
 
-      // 手机端 (480px 以下)
       @media screen and (max-width: 480px) {
         padding: 15px;
         gap: 12px;
@@ -234,7 +230,6 @@
     }
   }
 
-  // mainPaper 容器的响应式
   @media screen and (max-width: 768px) {
     width: 100%;
     left: 0;
@@ -252,7 +247,6 @@
     }
   }
 
-  // 激活状态
   &.onMainPaper {
     animation: onMainPaperAni 0.35s ease-in 1 both;
     z-index: 10;
@@ -267,7 +261,6 @@
   }
 }
 
-// 原有动画
 @keyframes mainPaperItemFooterAni {
   0% {
     transform: translateX(0);
@@ -277,7 +270,6 @@
   }
 }
 
-// 移动端动画 - 改为上下方向
 @keyframes mainPaperItemFooterAniMobile {
   0% {
     transform: translateY(0) rotate(90deg);

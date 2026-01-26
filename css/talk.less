@@ -1,4 +1,3 @@
-// ============ 变量定义 ============
 @color-bg: #f0fff4;
 @color-primary: #5ff864;
 @color-primary-light: #e8ffe8;
@@ -24,7 +23,6 @@
 @import "snowTheme.less";
 @import "themeToggle.less";
 
-// ============ 基础重置 ============
 * {
   margin: 0;
   padding: 0;
@@ -37,7 +35,6 @@ body {
   min-height: 100vh;
 }
 
-// ============ 主容器 ============
 .momPage {
   display: flex;
   flex-direction: column;
@@ -49,7 +46,6 @@ body {
   animation: fadeInUp 0.8s ease-out both;
 }
 
-// ============ Hero区域 ============
 .momHero {
   display: flex;
   flex-direction: column;
@@ -121,7 +117,6 @@ body {
   }
 }
 
-// ============ 图片展示区域 ============
 .momGallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -223,7 +218,6 @@ body {
   }
 }
 
-// ============ 底部装饰 ============
 .momFooter {
   display: flex;
   justify-content: center;
@@ -242,7 +236,6 @@ body {
   }
 }
 
-// ============ 灯箱样式 ============
 .lightbox {
   position: fixed;
   top: 0;
@@ -275,7 +268,6 @@ body {
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
-  // 关闭按钮
   .lightboxClose {
     position: absolute;
     top: -50px;
@@ -308,7 +300,6 @@ body {
     }
   }
 
-  // 图片容器
   .lightboxImageWrap {
     display: flex;
     justify-content: center;
@@ -328,7 +319,6 @@ body {
     }
   }
 
-  // 图片标题
   .lightboxCaption {
     text-align: center;
     padding: 20px;
@@ -343,7 +333,6 @@ body {
     }
   }
 
-  // 左右导航按钮
   .lightboxNav {
     position: absolute;
     top: 50%;
@@ -385,7 +374,6 @@ body {
     @media (max-width: 800px) { right: 10px; }
   }
 
-  // 缩放控制
   .lightboxControls {
     position: absolute;
     bottom: -60px;
@@ -439,7 +427,6 @@ body {
   }
 }
 
-// ============ 动画定义 ============
 @keyframes fadeInUp {
   0% { opacity: 0; transform: translateY(30px); }
   100% { opacity: 1; transform: translateY(0); }

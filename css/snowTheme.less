@@ -1,4 +1,3 @@
-// 雪花主题选择器样式
 .snowThemePanel {
   position: fixed;
   left: 20px;
@@ -8,7 +7,6 @@
   align-items: flex-end;
   gap: 12px;
 
-  // 切换按钮
   .snowThemeToggle {
     width: 50px;
     height: 50px;
@@ -49,7 +47,6 @@
     }
   }
 
-  // 主题列表容器
   .snowThemeList {
     display: flex;
     flex-direction: column;
@@ -67,7 +64,6 @@
     overflow: hidden;
   }
 
-  // 展开状态
   &.active {
     .snowThemeToggle {
       background: linear-gradient(135deg, @color-primary-dark, @color-primary);
@@ -82,7 +78,6 @@
     }
   }
 
-  // 单个主题项
   .snowThemeItem {
     display: flex;
     align-items: center;
@@ -103,7 +98,6 @@
       background: linear-gradient(135deg, @color-primary-light, @color-primary);
     }
 
-    // 预览圆点容器
     .themePreview {
       width: 40px;
       height: 40px;
@@ -131,7 +125,6 @@
         color: #999;
       }
 
-      // 各主题预览样式
       &.winter {
         background: linear-gradient(135deg, #e3f2fd, #bbdefb);
         span { background: white; box-shadow: 0 0 5px rgba(255,255,255,0.8); }
@@ -187,7 +180,6 @@
   }
 }
 
-// 预览动画
 @keyframes previewFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
@@ -198,7 +190,6 @@
   50% { transform: translateY(-3px) rotate(10deg); }
 }
 
-// 响应式适配
 @media (max-width: 768px) {
   .snowThemePanel {
     left: 10px;

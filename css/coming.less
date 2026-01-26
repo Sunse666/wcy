@@ -1,4 +1,3 @@
-// ============ 变量定义 ============
 @color-bg: #f0fff4;
 @color-bg-dark: #0a1f0d;
 @color-primary: #5ff864;
@@ -16,7 +15,6 @@
 @border-radius-medium: 15px;
 @border-radius-small: 10px;
 
-// ============ 基础重置 ============
 * {
   margin: 0;
   padding: 0;
@@ -30,7 +28,6 @@ body {
   overflow-x: hidden;
 }
 
-// ============ 主容器 ============
 .comingPage {
   display: flex;
   flex-direction: column;
@@ -42,7 +39,6 @@ body {
   overflow: hidden;
 }
 
-// ============ 背景装饰 ============
 .bgDecor {
   position: fixed;
   top: 0;
@@ -69,7 +65,6 @@ body {
   }
 }
 
-// ============ 主要内容 ============
 .comingContent {
   display: flex;
   flex-direction: column;
@@ -79,7 +74,6 @@ body {
   max-width: 800px;
 }
 
-// ============ 图标动画 ============
 .comingIcon {
   position: relative;
   width: 150px;
@@ -156,7 +150,6 @@ body {
   }
 }
 
-// ============ 文字样式 ============
 .comingTitle {
   font-size: 3.5em;
   font-weight: 800;
@@ -202,49 +195,40 @@ body {
   }
 }
 
-// ============ 逐字动画样式 ============
 .text-char {
   display: inline-block;
   opacity: 0;
   will-change: transform, opacity;
 
-  // 从下往上滑入
   &.char-up {
     animation: charSlideUp 0.6s ease-out forwards;
   }
 
-  // 从左往右滑入
   &.char-left {
     animation: charSlideLeft 0.5s ease-out forwards;
   }
 
-  // 从右往左滑入
   &.char-right {
     animation: charSlideRight 0.5s ease-out forwards;
   }
 
-  // 缩放淡入
   &.char-scale {
     animation: charScale 0.4s ease-out forwards;
   }
 
-  // 旋转进入
   &.char-rotate {
     animation: charRotate 0.6s ease-out forwards;
   }
 
-  // 弹跳效果
   &.char-bounce {
     animation: charBounce 0.5s ease-out forwards;
   }
 
-  // 下落效果
   &.char-down {
     animation: charSlideDown 0.5s ease-out forwards;
   }
 }
 
-// ============ 进度条 ============
 .comingProgress {
   width: 300px;
   margin-bottom: 50px;
@@ -309,7 +293,6 @@ body {
   }
 }
 
-// ============ 功能预告 ============
 .comingFeatures {
   display: flex;
   gap: 25px;
@@ -391,7 +374,6 @@ body {
   }
 }
 
-// ============ 返回按钮 ============
 .comingBack {
   display: flex;
   align-items: center;
@@ -424,7 +406,6 @@ body {
   }
 }
 
-// ============ 底部装饰 ============
 .comingFooter {
   position: fixed;
   bottom: 0;
@@ -473,9 +454,6 @@ body {
   }
 }
 
-// ============ 动画定义 ============
-
-// 字符动画 - 从下往上
 @keyframes charSlideUp {
   0% {
     opacity: 0;
@@ -490,7 +468,6 @@ body {
   }
 }
 
-// 字符动画 - 从上往下
 @keyframes charSlideDown {
   0% {
     opacity: 0;
@@ -502,7 +479,6 @@ body {
   }
 }
 
-// 字符动画 - 从左往右
 @keyframes charSlideLeft {
   0% {
     opacity: 0;
@@ -514,7 +490,6 @@ body {
   }
 }
 
-// 字符动画 - 从右往左
 @keyframes charSlideRight {
   0% {
     opacity: 0;
@@ -526,7 +501,6 @@ body {
   }
 }
 
-// 字符动画 - 缩放
 @keyframes charScale {
   0% {
     opacity: 0;
@@ -541,7 +515,6 @@ body {
   }
 }
 
-// 字符动画 - 旋转
 @keyframes charRotate {
   0% {
     opacity: 0;
@@ -553,7 +526,6 @@ body {
   }
 }
 
-// 字符动画 - 弹跳
 @keyframes charBounce {
   0% {
     opacity: 0;
@@ -575,7 +547,6 @@ body {
   }
 }
 
-// 图标浮动
 @keyframes iconFloat {
   0%, 100% {
     transform: translate(-50%, -50%) translateY(0);
@@ -585,7 +556,6 @@ body {
   }
 }
 
-// 沙漏旋转
 @keyframes hourglassRotate {
   0%, 45% {
     transform: rotate(0deg);
@@ -598,7 +568,6 @@ body {
   }
 }
 
-// 环脉冲
 @keyframes ringPulse {
   0%, 100% {
     transform: translate(-50%, -50%) scale(1);
@@ -610,7 +579,6 @@ body {
   }
 }
 
-// 背景浮动
 @keyframes floatDecor {
   0%, 100% {
     transform: translate(0, 0) scale(1);
@@ -622,25 +590,21 @@ body {
   }
 }
 
-// 进度条光泽
 @keyframes progressShine {
   0% { background-position: 0% 50%; }
   100% { background-position: 200% 50%; }
 }
 
-// 进度条发光移动
 @keyframes progressGlowMove {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
 
-// 点闪烁
 @keyframes dotBlink {
   0%, 60%, 100% { opacity: 0.3; }
   30% { opacity: 1; }
 }
 
-// 功能卡片滑入
 @keyframes featureSlideUp {
   0% {
     opacity: 0;
@@ -652,7 +616,6 @@ body {
   }
 }
 
-// 淡入上移
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -664,13 +627,11 @@ body {
   }
 }
 
-// 波浪移动
 @keyframes waveMove {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-// 闪烁
 @keyframes sparkle {
   0%, 100% {
     opacity: 0.5;
